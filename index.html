@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090d17">
-<title>Wisetrader V75 1S PRO</title>
-
-<style>
+<title>Wisetrader V75 1S PRO</title><style>
 :root {
   --bg:#090d17;
   --panel:#111827;
@@ -86,7 +83,6 @@ button {
 }
 
 button:disabled { opacity:.6 }
-
 .secondary { background:#25334b;color:var(--text) }
 
 .row,.actions {
@@ -153,28 +149,19 @@ footer {
   .row,.actions { grid-template-columns:1fr }
   header { padding:12px }
 }
-</style>
-</head>
-
-<body>
+</style></head><body>
 <header>
   <img class="logo" src="./lgo2.png" alt="Wisetrader logo"
        onerror="this.style.display='none'">
   <div>
     <div class="brand">WISETRADER V75 1S PRO</div>
-    <div class="subtitle">SuperTrend 10 / 4.0 · M1 + M5</div>
+    <div class="subtitle">SuperTrend 10 / 4.0 · M1 + M5 · Closed-Candle Confirmation</div>
   </div>
-</header>
-
-<main>
-
-<section class="card">
-  <h2>MARKET SETTINGS</h2>
-
-  <label for="symbol">Deriv market</label>
-  <select id="symbol">
-    <option value="1HZ75V">Volatility 75 (1s) Index</option>
-  </select>
+</header><main><section class="card">
+  <h2>MARKET SETTINGS</h2><label for="symbol">Deriv market</label>
+<select id="symbol">
+<option value="1HZ75V">Volatility 75 (1s) Index</option>
+</select>
 
   <div class="row">
     <div>
@@ -185,80 +172,59 @@ footer {
       <label for="stMultiplier">SuperTrend multiplier</label>
       <input id="stMultiplier" type="number" value="4.0" min="0.5" max="10" step="0.1">
     </div>
-  </div>
-
-  <div class="actions">
+  </div>  <div class="actions">
     <button id="startBtn">START / ENABLE ALERTS</button>
     <button id="refreshBtn" class="secondary">REFRESH NOW</button>
-  </div>
-
-  <p class="muted">
-    Automatic refresh every 10 seconds while the app is running.
-    Browser notifications require permission. Keep the page open for updates.
+  </div>  <p class="muted">
+    Automatic refresh every 10 seconds while running.
+    Signals use completed candles only. Keep the page open for updates.
   </p>
-</section>
-
-<section class="card">
-  <h2>CONNECTION STATUS</h2>
-
-  <div class="status">
+</section><section class="card">
+  <h2>CONNECTION STATUS</h2>  <div class="status">
     <strong id="dataTitle" class="wait">NOT STARTED</strong>
     <span id="dataMessage">Press Start / Enable Alerts.</span>
-  </div>
-
-  <div class="stat-grid">
+  </div>  <div class="stat-grid">
     <div class="stat"><small>South African time</small><strong id="clock">--:--:--</strong></div>
     <div class="stat"><small>Last update</small><strong id="lastUpdate">—</strong></div>
-    <div class="stat"><small>M1 candles</small><strong id="m1Count">—</strong></div>
-    <div class="stat"><small>M5 candles</small><strong id="m5Count">—</strong></div>
+    <div class="stat"><small>M1 closed candles</small><strong id="m1Count">—</strong></div>
+    <div class="stat"><small>M5 closed candles</small><strong id="m5Count">—</strong></div>
     <div class="stat"><small>Next refresh</small><strong id="nextRefresh">Stopped</strong></div>
     <div class="stat"><small>Notifications</small><strong id="notificationStatus">Not enabled</strong></div>
   </div>
-</section>
-
-<section class="card">
-  <h2>MARKET SIGNAL</h2>
-
-  <div class="signal">
+</section><section class="card">
+  <h2>MARKET ANALYSIS</h2>  <div class="signal">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:7px">CONFIRMED TREND</div>
+    <div id="trendText" class="signal-title wait">WAIT</div>
+    <div id="trendDetail" class="signal-detail">Waiting for closed-candle trend confirmation.</div>
+  </div>  <div class="signal" style="margin-top:12px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:7px">ENTRY SIGNAL</div>
     <div id="signalText" class="signal-title wait">WAIT</div>
     <div id="signalDetail" class="signal-detail">
       Waiting for market data.
     </div>
-  </div>
-
-  <div class="stat-grid">
+  </div>  <div class="stat-grid">
     <div class="stat"><small>M1 SuperTrend</small><strong id="m1Trend">—</strong></div>
     <div class="stat"><small>M5 SuperTrend</small><strong id="m5Trend">—</strong></div>
     <div class="stat"><small>M1 RSI (14)</small><strong id="rsi">—</strong></div>
-    <div class="stat"><small>Latest M1 close</small><strong id="price">—</strong></div>
+    <div class="stat"><small>Latest closed M1 price</small><strong id="price">—</strong></div>
   </div>
-</section>
-
-<section class="card">
+</section><section class="card">
   <h2>ALERT SETTINGS</h2>
   <p class="muted">
-    BUY and SELL alerts are generated only when the calculated signal changes.
-    The first successful analysis establishes a baseline and does not trigger an
-    immediate trade alert. Later WAIT-to-BUY or WAIT-to-SELL transitions can
-    trigger a browser notification and sound.
-  </p>
-
-  <button id="testAlertBtn" class="secondary">TEST NOTIFICATION & SOUND</button>
+    Alerts trigger only when a new entry signal is confirmed on a newly
+    completed M1 candle. The first analysis establishes a baseline without
+    sending an immediate alert. A trend can remain bullish or bearish while
+    the entry signal waits for RSI confirmation.
+  </p><button id="testAlertBtn" class="secondary">TEST NOTIFICATION & SOUND</button>
 
   <p class="muted">
-    Sound requires you to interact with the page first. Browser notifications
-    require permission and may not work when your browser restricts background activity.
+    Sound requires interaction with the page. Browser notifications require
+    permission. Android may restrict notifications for installed APKs.
   </p>
-</section>
-
-</main>
-
-<footer>
+</section></main><footer>
   WISETRADER V75 1S PRO<br>
   Market analysis only · No automatic trading · Signals are not guaranteed
-</footer>
-
-<script>
+</footer><script>
 "use strict";
 
 const $ = id => document.getElementById(id);
@@ -277,10 +243,13 @@ let timer = null;
 let countdownTimer = null;
 let nextRefreshAt = 0;
 
-let lastSignal = null;
+let confirmedTrend = null;
+let lastEntrySignal = null;
+let lastProcessedM1Close = null;
+let baselineEstablished = false;
+
 let audioContext = null;
 let audioUnlocked = false;
-let refreshFailures = 0;
 
 function setStatus(title, message, state = "wait") {
   $("dataTitle").textContent = title;
@@ -304,23 +273,13 @@ function formatSA(date = new Date()) {
 function updateClock() {
   $("clock").textContent = formatSA();
 }
+
 setInterval(updateClock, 1000);
 updateClock();
 
 function setNextRefresh(seconds) {
   $("nextRefresh").textContent =
     seconds === null ? "Stopped" : seconds + " sec";
-}
-
-function resetSignal(message) {
-  $("signalText").textContent = "WAIT";
-  $("signalText").className = "signal-title wait";
-  $("signalDetail").textContent = message;
-
-  $("m1Trend").textContent = "—";
-  $("m5Trend").textContent = "—";
-  $("rsi").textContent = "—";
-  $("price").textContent = "—";
 }
 
 function updateNotificationStatus() {
@@ -334,6 +293,7 @@ function updateNotificationStatus() {
     Notification.permission === "denied" ? "Blocked" :
     "Permission needed";
 }
+
 updateNotificationStatus();
 
 function rejectPending(reason) {
@@ -347,7 +307,6 @@ function rejectPending(reason) {
 function closeSocket() {
   const old = socket;
   socket = null;
-
   rejectPending("Connection restarted.");
 
   if (old) {
@@ -425,7 +384,6 @@ function onMessage(event) {
 
 async function connectSocket() {
   closeSocket();
-
   setStatus("CONNECTING", "Opening Deriv public market-data connection.");
 
   const ws = new WebSocket(WS_URL);
@@ -437,29 +395,23 @@ async function connectSocket() {
     const connectionTimer = setTimeout(() => {
       if (settled) return;
       settled = true;
-
       try { ws.close(); } catch (_) {}
       reject(new Error("Connection timed out. Check internet access."));
     }, 12000);
 
     ws.onopen = () => {
       if (settled) return;
-
       settled = true;
       clearTimeout(connectionTimer);
       ws.onmessage = onMessage;
-
       resolve();
     };
 
     ws.onerror = () => {
       if (settled) return;
-
       settled = true;
       clearTimeout(connectionTimer);
-      reject(new Error(
-        "WebSocket connection failed. The public endpoint may be unavailable."
-      ));
+      reject(new Error("Deriv WebSocket connection failed."));
     };
 
     ws.onclose = () => {
@@ -505,7 +457,7 @@ async function fetchCandles(granularity) {
     count: 500,
     end: "latest",
     style: "candles",
-    granularity: granularity
+    granularity
   });
 
   const result = normaliseCandles(response);
@@ -520,11 +472,18 @@ async function fetchCandles(granularity) {
   return result;
 }
 
+function getClosedCandles(data, granularitySeconds) {
+  const now = Date.now();
+
+  return data.filter(c =>
+    c.time + granularitySeconds * 1000 <= now
+  );
+}
+
 function calculateRSI(data, period = 14) {
+  if (data.length <= period) return null;
+
   const closes = data.map(c => c.close);
-
-  if (closes.length <= period) return null;
-
   let gain = 0;
   let loss = 0;
 
@@ -540,22 +499,21 @@ function calculateRSI(data, period = 14) {
   for (let i = period + 1; i < closes.length; i++) {
     const change = closes[i] - closes[i - 1];
 
-    avgGain = (
-      avgGain * (period - 1) + Math.max(0, change)
-    ) / period;
+    avgGain =
+      (avgGain * (period - 1) + Math.max(0, change)) / period;
 
-    avgLoss = (
-      avgLoss * (period - 1) + Math.max(0, -change)
-    ) / period;
+    avgLoss =
+      (avgLoss * (period - 1) + Math.max(0, -change)) / period;
   }
 
-  if (avgLoss === 0) return avgGain === 0 ? 50 : 100;
+  if (avgLoss === 0) {
+    return avgGain === 0 ? 50 : 100;
+  }
 
-  const rs = avgGain / avgLoss;
-  return 100 - 100 / (1 + rs);
+  return 100 - 100 / (1 + avgGain / avgLoss);
 }
 
-function calculateSuperTrend(data, period, multiplier) {
+function calculateSuperTrendSeries(data, period, multiplier) {
   const n = data.length;
 
   const tr = new Array(n).fill(null);
@@ -577,17 +535,13 @@ function calculateSuperTrend(data, period, multiplier) {
   }
 
   let total = 0;
-
-  for (let i = 1; i <= period; i++) {
-    total += tr[i];
-  }
+  for (let i = 1; i <= period; i++) total += tr[i];
 
   atr[period] = total / period;
 
   for (let i = period + 1; i < n; i++) {
-    atr[i] = (
-      atr[i - 1] * (period - 1) + tr[i]
-    ) / period;
+    atr[i] =
+      (atr[i - 1] * (period - 1) + tr[i]) / period;
   }
 
   for (let i = period; i < n; i++) {
@@ -619,17 +573,41 @@ function calculateSuperTrend(data, period, multiplier) {
     }
   }
 
-  let last = n - 1;
+  return direction;
+}
 
-  while (last >= period && direction[last] === null) {
-    last--;
+function calculateSuperTrend(data, period, multiplier) {
+  const series = calculateSuperTrendSeries(data, period, multiplier);
+
+  for (let i = series.length - 1; i >= 0; i--) {
+    if (series[i] !== null) {
+      return series[i] === 1 ? "BULLISH" : "BEARISH";
+    }
   }
 
-  if (last < period) {
-    throw new Error("SuperTrend calculation failed.");
-  }
+  throw new Error("SuperTrend calculation failed.");
+}
 
-  return direction[last] === 1 ? "BULLISH" : "BEARISH";
+function setTrendDisplay(trend, detail) {
+  const text = $("trendText");
+  text.textContent = trend;
+  text.className =
+    "signal-title " +
+    (trend === "BULLISH" ? "buy" :
+     trend === "BEARISH" ? "sell" : "wait");
+
+  $("trendDetail").textContent = detail;
+}
+
+function setEntryDisplay(signal, detail) {
+  const text = $("signalText");
+  text.textContent = signal;
+  text.className =
+    "signal-title " +
+    (signal === "BUY" ? "buy" :
+     signal === "SELL" ? "sell" : "wait");
+
+  $("signalDetail").textContent = detail;
 }
 
 function analyse() {
@@ -645,57 +623,91 @@ function analyse() {
     throw new Error("Multiplier must be between 0.5 and 10.");
   }
 
-  const m1 = candles.M1;
-  const m5 = candles.M5;
+  const m1 = getClosedCandles(candles.M1, 60);
+  const m5 = getClosedCandles(candles.M5, 300);
 
   if (m1.length < 205 || m5.length < 205) {
-    throw new Error("Waiting for sufficient candle history.");
+    throw new Error("Waiting for enough completed candles.");
   }
 
   const st1 = calculateSuperTrend(m1, period, multiplier);
   const st5 = calculateSuperTrend(m5, period, multiplier);
   const rsi = calculateRSI(m1, 14);
 
-  const latest = m1[m1.length - 1];
-
   if (rsi === null || !Number.isFinite(rsi)) {
     throw new Error("RSI calculation failed.");
   }
 
-  $("m1Trend").textContent = st1;
-  $("m5Trend").textContent = st5;
-  $("rsi").textContent = rsi.toFixed(2);
-  $("price").textContent = latest.close.toFixed(2);
+  const latest = m1[m1.length - 1];
+
   $("m1Count").textContent = m1.length;
   $("m5Count").textContent = m5.length;
+  $("price").textContent = latest.close.toFixed(2);
+  $("rsi").textContent = rsi.toFixed(2);
+  $("m1Trend").textContent = st1;
+  $("m5Trend").textContent = st5;
 
-  let signal = "WAIT";
-  let detail = "Waiting for M1, M5 and RSI to align.";
-
-  if (st1 === "BULLISH" &&
-      st5 === "BULLISH" &&
-      rsi >= 50 && rsi < 70) {
-    signal = "BUY";
-    detail = "Both SuperTrend timeframes are bullish; RSI confirms momentum.";
-  } else if (st1 === "BEARISH" &&
-             st5 === "BEARISH" &&
-             rsi > 30 && rsi < 50) {
-    signal = "SELL";
-    detail = "Both SuperTrend timeframes are bearish; RSI confirms momentum.";
+  /*
+   * Trend is updated only when both timeframes agree.
+   * If they disagree, preserve the last confirmed trend.
+   */
+  if (st1 === st5) {
+    confirmedTrend = st1;
   }
 
-  $("signalText").textContent = signal;
-  $("signalText").className =
-    "signal-title " + (
-      signal === "BUY" ? "buy" :
-      signal === "SELL" ? "sell" : "wait"
-    );
+  const trend = confirmedTrend || "WAIT";
 
-  $("signalDetail").textContent = detail;
+  setTrendDisplay(
+    trend,
+    trend === "BULLISH"
+      ? "Confirmed bullish trend. Waiting for valid BUY entry conditions."
+      : trend === "BEARISH"
+        ? "Confirmed bearish trend. Waiting for valid SELL entry conditions."
+        : "Waiting for M1 and M5 SuperTrend to agree."
+  );
 
-  handleSignalChange(signal, latest.close, rsi);
+  let entry = "WAIT";
+  let detail = "Waiting for trend and RSI confirmation.";
 
-  return signal;
+  if (trend === "BULLISH" &&
+      st1 === "BULLISH" &&
+      st5 === "BULLISH" &&
+      rsi >= 50 && rsi < 70) {
+    entry = "BUY";
+    detail = "M1 and M5 are bullish; closed-candle RSI confirms entry.";
+  } else if (trend === "BEARISH" &&
+             st1 === "BEARISH" &&
+             st5 === "BEARISH" &&
+             rsi > 30 && rsi < 50) {
+    entry = "SELL";
+    detail = "M1 and M5 are bearish; closed-candle RSI confirms entry.";
+  } else {
+    detail =
+      "Trend: " + trend +
+      ". Entry is WAIT until all entry conditions align.";
+  }
+
+  /*
+   * Only process a new signal when a new completed M1 candle appears.
+   */
+  if (!baselineEstablished) {
+    baselineEstablished = true;
+    lastProcessedM1Close = latest.time;
+    lastEntrySignal = entry;
+  } else if (latest.time > lastProcessedM1Close) {
+    lastProcessedM1Close = latest.time;
+
+    if (entry !== lastEntrySignal &&
+        (entry === "BUY" || entry === "SELL")) {
+      handleSignalChange(entry, latest.close, rsi);
+    }
+
+    lastEntrySignal = entry;
+  }
+
+  setEntryDisplay(entry, detail);
+
+  return entry;
 }
 
 function unlockAudio() {
@@ -705,13 +717,9 @@ function unlockAudio() {
 
     if (!AudioContextClass) return;
 
-    if (!audioContext) {
-      audioContext = new AudioContextClass();
-    }
+    if (!audioContext) audioContext = new AudioContextClass();
 
-    if (audioContext.state === "suspended") {
-      audioContext.resume();
-    }
+    if (audioContext.state === "suspended") audioContext.resume();
 
     audioUnlocked = true;
   } catch (error) {
@@ -723,53 +731,41 @@ function playAlertSound(type = "BUY") {
   if (!audioUnlocked || !audioContext) return;
 
   try {
-    if (audioContext.state === "suspended") {
-      audioContext.resume();
-    }
+    if (audioContext.state === "suspended") audioContext.resume();
 
-    const frequencies = type === "SELL"
-      ? [660, 440]
-      : [660, 880];
+    const frequencies = type === "SELL" ? [660, 440] : [660, 880];
 
     frequencies.forEach((frequency, index) => {
       const oscillator = audioContext.createOscillator();
       const gain = audioContext.createGain();
+      const start = audioContext.currentTime + index * 0.18;
 
       oscillator.type = "sine";
       oscillator.frequency.value = frequency;
 
-      gain.gain.setValueAtTime(
-        0.0001, audioContext.currentTime + index * 0.18
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.18, audioContext.currentTime + index * 0.18 + 0.025
-      );
-
-      gain.gain.exponentialRampToValueAtTime(
-        0.0001, audioContext.currentTime + index * 0.18 + 0.16
-      );
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(0.18, start + 0.025);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
 
       oscillator.connect(gain);
       gain.connect(audioContext.destination);
 
-      oscillator.start(audioContext.currentTime + index * 0.18);
-      oscillator.stop(audioContext.currentTime + index * 0.18 + 0.18);
+      oscillator.start(start);
+      oscillator.stop(start + 0.18);
     });
   } catch (error) {
-    console.warn("Could not play alert sound:", error);
+    console.warn("Alert sound failed:", error);
   }
 }
 
 function showNotification(title, body) {
   if (!("Notification" in window)) return;
-
   if (Notification.permission !== "granted") return;
 
   try {
     const notification = new Notification(title, {
-      body: body,
-      tag: "wisetrader-v75-signal",
+      body,
+      tag: "wisetrader-v75-entry",
       renotify: false
     });
 
@@ -778,39 +774,24 @@ function showNotification(title, body) {
       notification.close();
     };
   } catch (error) {
-    console.warn(
-      "Browser notification could not be shown. Check browser support.",
-      error
-    );
+    console.warn("Notification failed:", error);
   }
 }
 
 function handleSignalChange(signal, price, rsi) {
-  if (lastSignal === null) {
-    lastSignal = signal;
-    return;
-  }
+  showNotification(
+    "WISETRADER V75 1S — " + signal,
+    "Confirmed " + signal +
+    " entry\nMarket: Volatility 75 (1s) Index" +
+    "\nClosed M1 price: " + price.toFixed(2) +
+    "\nRSI: " + rsi.toFixed(2)
+  );
 
-  const previous = lastSignal;
-  lastSignal = signal;
-
-  if (signal === previous) return;
-  if (signal !== "BUY" && signal !== "SELL") return;
-
-  const title = "WISETRADER V75 1S — " + signal;
-  const body =
-    "Signal: " + signal +
-    "\nMarket: Volatility 75 (1s) Index" +
-    "\nPrice: " + price.toFixed(2) +
-    "\nRSI: " + rsi.toFixed(2) +
-    "\nPrevious signal: " + previous;
-
-  showNotification(title, body);
   playAlertSound(signal);
 
   setStatus(
-    signal + " SIGNAL",
-    "New " + signal + " signal detected at " + formatSA() + ".",
+    signal + " ENTRY CONFIRMED",
+    "New " + signal + " entry confirmed at " + formatSA() + ".",
     "success"
   );
 }
@@ -821,10 +802,7 @@ async function refreshMarket() {
   busy = true;
 
   try {
-    setStatus(
-      "UPDATING",
-      "Requesting the latest M1 and M5 market candles."
-    );
+    setStatus("UPDATING", "Requesting the latest M1 and M5 candles.");
 
     await connectSocket();
 
@@ -842,54 +820,31 @@ async function refreshMarket() {
 
     $("lastUpdate").textContent = formatSA();
 
-    refreshFailures = 0;
-
-    if ($("signalText").textContent === "BUY" ||
-        $("signalText").textContent === "SELL") {
-      const current = $("signalText").textContent;
-
-      setStatus(
-        "CONNECTED · DATA RECEIVED",
-        current + " conditions currently match. Last update: " + formatSA(),
-        "success"
-      );
-    } else {
-      setStatus(
-        "CONNECTED · DATA RECEIVED",
-        "Market data updated successfully. Waiting for aligned conditions.",
-        "success"
-      );
-    }
+    setStatus(
+      "CONNECTED · DATA RECEIVED",
+      "Closed candles analysed. Refreshing every 10 seconds.",
+      "success"
+    );
   } catch (error) {
-    console.error("Wisetrader refresh error:", error);
-
-    refreshFailures++;
+    console.error("Refresh error:", error);
 
     setStatus(
       "DATA ERROR",
-      error && error.message
-        ? error.message + " Automatic retry will follow."
-        : "Unknown error. Automatic retry will follow.",
+      (error.message || "Unknown error") + " Automatic retry will follow.",
       "error"
     );
   } finally {
     closeSocket();
     busy = false;
 
-    if (running) {
-      scheduleNextRefresh();
-    }
+    if (running) scheduleNextRefresh();
   }
 }
 
 function scheduleNextRefresh() {
   clearTimeout(timer);
-
   nextRefreshAt = Date.now() + REFRESH_MS;
-
-  timer = setTimeout(() => {
-    refreshMarket();
-  }, REFRESH_MS);
+  timer = setTimeout(refreshMarket, REFRESH_MS);
 }
 
 function updateCountdown() {
@@ -898,11 +853,9 @@ function updateCountdown() {
     return;
   }
 
-  const remaining = Math.max(
-    0, Math.ceil((nextRefreshAt - Date.now()) / 1000)
+  setNextRefresh(
+    Math.max(0, Math.ceil((nextRefreshAt - Date.now()) / 1000))
   );
-
-  setNextRefresh(remaining);
 }
 
 countdownTimer = setInterval(updateCountdown, 1000);
@@ -936,26 +889,9 @@ async function startApp() {
   running = true;
   $("startBtn").textContent = "ALERTS ENABLED · RUNNING";
 
-  setStatus(
-    "STARTING",
-    "Automatic market refresh is starting."
-  );
+  setStatus("STARTING", "Automatic market refresh is starting.");
 
   await refreshMarket();
-}
-
-function stopApp() {
-  running = false;
-  clearTimeout(timer);
-  closeSocket();
-
-  $("startBtn").textContent = "START / ENABLE ALERTS";
-  setNextRefresh(null);
-
-  setStatus(
-    "STOPPED",
-    "Automatic refresh has stopped. Press Start to resume."
-  );
 }
 
 $("startBtn").addEventListener("click", startApp);
@@ -980,67 +916,47 @@ $("testAlertBtn").addEventListener("click", async () => {
 
   showNotification(
     "WISETRADER TEST ALERT",
-    "Notifications are configured. This is a test, not a trading signal."
+    "This is a test notification, not a trading signal."
   );
 
-  if (Notification.permission !== "granted") {
+  if (!("Notification" in window) ||
+      Notification.permission !== "granted") {
     setStatus(
       "NOTIFICATION PERMISSION NEEDED",
-      "Allow notifications in your browser settings to receive alerts.",
+      "Allow notifications in your browser or Android app settings.",
       "error"
     );
   }
 });
 
-$("stPeriod").addEventListener("change", () => {
+function recalculateSettings() {
   if (!candles.M1.length || !candles.M5.length) return;
 
   try {
     analyse();
+
     setStatus(
       "SETTINGS UPDATED",
-      "Indicators recalculated with the new ATR period.",
+      "Indicators recalculated using completed candles.",
       "success"
     );
   } catch (error) {
     setStatus("ANALYSIS ERROR", error.message, "error");
   }
-});
+}
 
-$("stMultiplier").addEventListener("change", () => {
-  if (!candles.M1.length || !candles.M5.length) return;
-
-  try {
-    analyse();
-    setStatus(
-      "SETTINGS UPDATED",
-      "Indicators recalculated with the new multiplier.",
-      "success"
-    );
-  } catch (error) {
-    setStatus("ANALYSIS ERROR", error.message, "error");
-  }
-});
+$("stPeriod").addEventListener("change", recalculateSettings);
+$("stMultiplier").addEventListener("change", recalculateSettings);
 
 window.addEventListener("offline", () => {
-  setStatus(
-    "NETWORK OFFLINE",
-    "Check your internet connection. Automatic retries will continue while running.",
-    "error"
-  );
+  setStatus("NETWORK OFFLINE", "Check your internet connection.", "error");
 });
 
 window.addEventListener("online", () => {
-  if (!running) {
-    setStatus(
-      "NETWORK ONLINE",
-      "Internet restored. Press Start to resume analysis."
-    );
-    return;
+  if (running) {
+    clearTimeout(timer);
+    refreshMarket();
   }
-
-  clearTimeout(timer);
-  refreshMarket();
 });
 
 window.addEventListener("beforeunload", () => {
@@ -1048,7 +964,5 @@ window.addEventListener("beforeunload", () => {
   clearTimeout(timer);
   closeSocket();
 });
-
-</script>
-</body>
-</html>
+</script></body>
+                                                         </html>
