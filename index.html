@@ -4,351 +4,304 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090d17">
-
 <title>Wisetrader V75 1S PRO</title>
 
 <style>
 :root {
-    --bg: #090d17;
-    --panel: #111827;
-    --panel2: #151e2e;
-    --border: #263248;
-    --text: #f3f6fc;
-    --muted: #94a3b8;
-    --green: #22c55e;
-    --red: #ef4444;
-    --yellow: #facc15;
-    --blue: #38bdf8;
+    --bg:#090d17;
+    --panel:#111827;
+    --panel2:#151e2e;
+    --border:#263248;
+    --text:#f3f6fc;
+    --muted:#94a3b8;
+    --green:#22c55e;
+    --red:#ef4444;
+    --yellow:#facc15;
+    --blue:#38bdf8;
 }
 
-* {
-    box-sizing: border-box;
-}
+* { box-sizing:border-box; }
 
 body {
-    margin: 0;
-    padding: 16px;
-    background: var(--bg);
-    color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
+    margin:0;
+    padding:16px;
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:14px;
 }
 
-.app {
-    max-width: 760px;
-    margin: 0 auto;
-}
+.app { max-width:760px; margin:0 auto; }
 
 header {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    margin-bottom: 18px;
-    padding: 8px 2px 16px;
-    border-bottom: 1px solid var(--border);
+    display:flex;
+    align-items:center;
+    gap:13px;
+    margin-bottom:18px;
+    padding:8px 2px 16px;
+    border-bottom:1px solid var(--border);
 }
 
 .logo {
-    width: 62px;
-    height: 62px;
-    object-fit: contain;
-    border-radius: 12px;
-    background: var(--panel);
-    border: 1px solid var(--border);
+    width:62px;
+    height:62px;
+    object-fit:contain;
+    border-radius:12px;
+    background:var(--panel);
+    border:1px solid var(--border);
 }
 
-.brand {
-    flex: 1;
-    min-width: 0;
-}
+.brand { flex:1; min-width:0; }
 
 .brand h1 {
-    font-size: 21px;
-    margin: 0 0 5px;
-    font-weight: 800;
-    letter-spacing: .3px;
+    font-size:21px;
+    margin:0 0 5px;
+    font-weight:800;
+    letter-spacing:.3px;
 }
 
 .brand p {
-    color: var(--muted);
-    margin: 0;
-    font-size: 12px;
+    color:var(--muted);
+    margin:0;
+    font-size:12px;
 }
 
 .badge {
-    display: inline-block;
-    margin-top: 7px;
-    padding: 5px 8px;
-    border-radius: 6px;
-    background: #172b42;
-    color: var(--blue);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: .5px;
+    display:inline-block;
+    margin-top:7px;
+    padding:5px 8px;
+    border-radius:6px;
+    background:#172b42;
+    color:var(--blue);
+    font-size:10px;
+    font-weight:800;
+    letter-spacing:.5px;
 }
 
 .live-badge {
-    padding: 7px 9px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    color: var(--yellow);
-    font-size: 10px;
-    font-weight: 800;
-    white-space: nowrap;
+    padding:7px 9px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    color:var(--yellow);
+    font-size:10px;
+    font-weight:800;
+    white-space:nowrap;
 }
 
 .card {
-    margin-bottom: 14px;
-    padding: 16px;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    background: var(--panel);
-    box-shadow: 0 5px 18px rgba(0,0,0,.12);
+    margin-bottom:14px;
+    padding:16px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:var(--panel);
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
 }
 
 .card-title {
-    margin: 0 0 13px;
-    color: var(--muted);
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-transform: uppercase;
+    margin:0 0 13px;
+    color:var(--muted);
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px;
 }
 
 .metric {
-    min-width: 0;
-    padding: 12px;
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
+    min-width:0;
+    padding:12px;
+    background:var(--panel2);
+    border:1px solid var(--border);
+    border-radius:10px;
 }
 
 .metric-label {
-    color: var(--muted);
-    font-size: 11px;
-    margin-bottom: 7px;
+    color:var(--muted);
+    font-size:11px;
+    margin-bottom:7px;
 }
 
 .metric-value {
-    font-size: 16px;
-    font-weight: 800;
-    overflow-wrap: anywhere;
+    font-size:16px;
+    font-weight:800;
+    overflow-wrap:anywhere;
 }
 
 .small {
-    margin-top: 6px;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.5;
+    margin-top:6px;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.5;
 }
 
 .statusline {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: 9px;
-    background: var(--panel2);
-    border: 1px solid var(--border);
-    margin-bottom: 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:10px 12px;
+    border-radius:9px;
+    background:var(--panel2);
+    border:1px solid var(--border);
+    margin-bottom:10px;
 }
 
-.status-label {
-    color: var(--muted);
-    font-size: 12px;
-}
+.status-label { color:var(--muted); font-size:12px; }
 
 .status-value {
-    font-size: 12px;
-    font-weight: 800;
-    text-align: right;
+    font-size:12px;
+    font-weight:800;
+    text-align:right;
 }
 
-.green { color: var(--green) !important; }
-.red { color: var(--red) !important; }
-.yellow { color: var(--yellow) !important; }
-.blue { color: var(--blue) !important; }
-.muted { color: var(--muted) !important; }
+.green { color:var(--green)!important; }
+.red { color:var(--red)!important; }
+.yellow { color:var(--yellow)!important; }
+.blue { color:var(--blue)!important; }
+.muted { color:var(--muted)!important; }
 
 .signal-box {
-    padding: 19px 12px;
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--panel2);
-    text-align: center;
-    margin-bottom: 12px;
+    padding:19px 12px;
+    border:1px solid var(--border);
+    border-radius:12px;
+    background:var(--panel2);
+    text-align:center;
+    margin-bottom:12px;
 }
 
 .signal-label {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: 1px;
-    font-weight: 800;
+    color:var(--muted);
+    font-size:11px;
+    letter-spacing:1px;
+    font-weight:800;
 }
 
 .signal-value {
-    margin: 10px 0;
-    font-size: 32px;
-    font-weight: 900;
-    letter-spacing: 1px;
+    margin:10px 0;
+    font-size:32px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
 .signal-detail {
-    color: var(--muted);
-    font-size: 12px;
-    line-height: 1.5;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.5;
 }
 
 .signal-buy {
-    color: var(--green);
-    border-color: rgba(34,197,94,.45);
-    background: rgba(34,197,94,.07);
+    color:var(--green);
+    border-color:rgba(34,197,94,.45);
+    background:rgba(34,197,94,.07);
 }
 
 .signal-sell {
-    color: var(--red);
-    border-color: rgba(239,68,68,.45);
-    background: rgba(239,68,68,.07);
+    color:var(--red);
+    border-color:rgba(239,68,68,.45);
+    background:rgba(239,68,68,.07);
 }
 
 .signal-wait {
-    color: var(--yellow);
-    border-color: rgba(250,204,21,.3);
+    color:var(--yellow);
+    border-color:rgba(250,204,21,.3);
 }
 
 .notice {
-    padding: 11px 12px;
-    border: 1px solid var(--border);
-    background: var(--panel2);
-    color: var(--muted);
-    border-radius: 9px;
-    line-height: 1.6;
-    font-size: 12px;
+    padding:11px 12px;
+    border:1px solid var(--border);
+    background:var(--panel2);
+    color:var(--muted);
+    border-radius:9px;
+    line-height:1.6;
+    font-size:12px;
 }
 
 button {
-    border: 1px solid var(--border);
-    border-radius: 9px;
-    padding: 11px 13px;
-    color: var(--text);
-    background: #1b2a40;
-    font-size: 12px;
-    font-weight: 800;
-    cursor: pointer;
+    border:1px solid var(--border);
+    border-radius:9px;
+    padding:11px 13px;
+    color:var(--text);
+    background:#1b2a40;
+    font-size:12px;
+    font-weight:800;
+    cursor:pointer;
 }
 
-button:active {
-    transform: scale(.98);
-}
-
-button:disabled {
-    opacity: .55;
-    cursor: not-allowed;
-}
+button:active { transform:scale(.98); }
+button:disabled { opacity:.55; cursor:not-allowed; }
 
 .btn-primary {
-    background: #123d30;
-    border-color: #24664e;
-    color: #86efac;
+    background:#123d30;
+    border-color:#24664e;
+    color:#86efac;
 }
 
 .btn-secondary {
-    background: #172b42;
-    border-color: #284762;
-    color: var(--blue);
-}
-
-.btn-danger {
-    background: #3b1c27;
-    border-color: #6b2838;
-    color: #fca5a5;
+    background:#172b42;
+    border-color:#284762;
+    color:var(--blue);
 }
 
 .button-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 12px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin-top:12px;
 }
 
 .button-row button {
-    flex: 1;
-    min-width: 120px;
+    flex:1;
+    min-width:120px;
 }
 
-input, select {
-    width: 100%;
-    padding: 11px;
-    margin-top: 7px;
-    color: var(--text);
-    background: #0b1220;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    outline: none;
-    font-size: 13px;
+input,select {
+    width:100%;
+    padding:11px;
+    margin-top:7px;
+    color:var(--text);
+    background:#0b1220;
+    border:1px solid var(--border);
+    border-radius:8px;
+    outline:none;
+    font-size:13px;
 }
 
-input:focus, select:focus {
-    border-color: var(--blue);
-}
+input:focus,select:focus { border-color:var(--blue); }
 
-.field {
-    margin-bottom: 12px;
-}
+.field { margin-bottom:12px; }
 
 .field label {
-    display: block;
-    color: var(--muted);
-    font-size: 12px;
+    display:block;
+    color:var(--muted);
+    font-size:12px;
 }
 
 .footer {
-    padding: 12px 4px 20px;
-    text-align: center;
-    color: var(--muted);
-    font-size: 11px;
-    line-height: 1.7;
+    padding:12px 4px 20px;
+    text-align:center;
+    color:var(--muted);
+    font-size:11px;
+    line-height:1.7;
 }
 
 hr {
-    border: 0;
-    border-top: 1px solid var(--border);
-    margin: 14px 0;
+    border:0;
+    border-top:1px solid var(--border);
+    margin:14px 0;
 }
 
-@media (max-width: 420px) {
-    body {
-        padding: 10px;
-    }
-
-    .card {
-        padding: 13px;
-    }
-
-    .brand h1 {
-        font-size: 17px;
-    }
-
-    .logo {
-        width: 52px;
-        height: 52px;
-    }
-
-    .live-badge {
-        font-size: 9px;
-        padding: 6px;
-    }
-
-    .metric-value {
-        font-size: 14px;
-    }
+@media(max-width:420px) {
+    body { padding:10px; }
+    .card { padding:13px; }
+    .brand h1 { font-size:17px; }
+    .logo { width:52px; height:52px; }
+    .live-badge { font-size:9px; padding:6px; }
+    .metric-value { font-size:14px; }
 }
 </style>
 </head>
@@ -384,18 +337,23 @@ hr {
     </div>
 
     <div class="statusline">
+        <span class="status-label">Selected strategy</span>
+        <span class="status-value blue" id="activeTimeframes">M1 + M5</span>
+    </div>
+
+    <div class="statusline">
         <span class="status-label">Last update</span>
         <span class="status-value" id="lastUpdate">Waiting for data</span>
     </div>
 
     <div class="statusline">
-        <span class="status-label">Closed M1 candles</span>
-        <span class="status-value" id="m1Count">—</span>
+        <span class="status-label" id="entryCandleLabel">Closed M1 candles</span>
+        <span class="status-value" id="entryCount">—</span>
     </div>
 
     <div class="statusline">
-        <span class="status-label">Closed M5 candles</span>
-        <span class="status-value" id="m5Count">—</span>
+        <span class="status-label" id="confirmCandleLabel">Closed M5 candles</span>
+        <span class="status-value" id="confirmCount">—</span>
     </div>
 
     <div class="button-row">
@@ -420,20 +378,20 @@ hr {
         </div>
 
         <div class="metric">
-            <div class="metric-label">RSI (14)</div>
+            <div class="metric-label" id="rsiTitle">RSI (14) • M1</div>
             <div class="metric-value" id="rsiValue">—</div>
             <div class="small" id="rsiDescription">Waiting for analysis</div>
         </div>
 
         <div class="metric">
-            <div class="metric-label">M1 SuperTrend</div>
-            <div class="metric-value" id="m1Trend">—</div>
+            <div class="metric-label" id="entryTrendTitle">M1 SuperTrend</div>
+            <div class="metric-value" id="entryTrend">—</div>
             <div class="small">Entry timeframe</div>
         </div>
 
         <div class="metric">
-            <div class="metric-label">M5 SuperTrend</div>
-            <div class="metric-value" id="m5Trend">—</div>
+            <div class="metric-label" id="confirmTrendTitle">M5 SuperTrend</div>
+            <div class="metric-value" id="confirmTrend">—</div>
             <div class="small">Confirmation timeframe</div>
         </div>
     </div>
@@ -447,7 +405,7 @@ hr {
         <div class="signal-label">CONFIRMED MARKET TREND</div>
         <div class="signal-value" id="confirmedTrend">WAIT</div>
         <div class="signal-detail" id="trendExplanation">
-            Waiting for M1 and M5 trend confirmation.
+            Waiting for trend confirmation.
         </div>
     </div>
 
@@ -472,14 +430,14 @@ hr {
         <div class="signal-label">CURRENT SIGNAL</div>
         <div class="signal-value" id="entrySignal">WAIT</div>
         <div class="signal-detail" id="entryExplanation">
-            Waiting for a completed candle and confirmed trend.
+            Waiting for completed candles and trend confirmation.
         </div>
     </div>
 
     <div class="grid">
         <div class="metric">
-            <div class="metric-label">Signal timeframe</div>
-            <div class="metric-value">M1 + M5</div>
+            <div class="metric-label">Signal timeframes</div>
+            <div class="metric-value" id="signalTimeframes">M1 + M5</div>
         </div>
 
         <div class="metric">
@@ -489,9 +447,9 @@ hr {
     </div>
 
     <div class="notice" style="margin-top:12px">
-        BUY and SELL signals require M1 and M5 trend agreement.
-        Signals are evaluated using completed candles, not the currently
-        forming candle. WAIT means the conditions are not fully aligned.
+        BUY and SELL signals require the selected entry and confirmation
+        timeframes to agree. Analysis uses completed candles only.
+        WAIT means the entry conditions are not fully aligned.
     </div>
 </section>
 
@@ -516,14 +474,27 @@ hr {
 
     <div class="notice">
         This app provides market analysis and alerts. It does not place
-        trades by itself. Confirm the market conditions and manage risk
-        before placing any trade.
+        trades by itself. Always manage your risk.
     </div>
 </section>
 
 <!-- SETTINGS -->
 <section class="card">
     <h2 class="card-title">Bot Settings</h2>
+
+    <div class="field">
+        <label for="timeframePreset">Strategy timeframes</label>
+        <select id="timeframePreset">
+            <option value="60,300">M1 + M5 — Fast scalping</option>
+            <option value="300,900">M5 + M15 — Slower scalping</option>
+            <option value="60,900">M1 + M15 — Fast entry, longer confirmation</option>
+        </select>
+        <div class="small">
+            First timeframe = entry. Second timeframe = trend confirmation.
+        </div>
+    </div>
+
+    <hr>
 
     <div class="grid">
         <div class="field">
@@ -545,8 +516,8 @@ hr {
 
     <div class="notice">
         Market refresh: every 10 seconds.<br>
-        Analysis timeframes: M1 and M5.<br>
-        Signal notifications: new confirmed entry signals only.
+        Signal analysis: selected entry and confirmation timeframes.<br>
+        Notifications: new confirmed BUY or SELL signals.
     </div>
 
     <div class="button-row">
@@ -560,28 +531,24 @@ hr {
 
     <div class="notice">
         • Uses Deriv public market data for Volatility 75 (1s).<br>
-        • Requires both M1 and M5 trend confirmation.<br>
+        • Supports M1 + M5, M5 + M15, and M1 + M15.<br>
         • Uses SuperTrend and RSI filters.<br>
-        • Notifications and sound depend on your browser and device permissions.<br>
-        • Keep this page open for continued updates.<br>
+        • Uses completed candles, not forming candles.<br>
+        • Notifications depend on your browser and device permissions.<br>
+        • Keep the page open for continued updates.<br>
         • Signals are not guaranteed to be profitable.
     </div>
 </section>
 
 <div class="footer">
     WISETRADER V75 1S PRO<br>
-    Deriv Market Data • SuperTrend + RSI • M1 / M5 Confirmation
+    Deriv Market Data • SuperTrend + RSI • Multiple Timeframes
 </div>
 
 </div>
 
 <script>
 "use strict";
-
-/* =========================================================
-   WISETRADER V75 1S PRO
-   Deriv market data, completed-candle analysis
-   ========================================================= */
 
 const WS_URL = "wss://api.derivws.com/trading/v1/options/ws/public";
 const SYMBOL = "1HZ75V";
@@ -594,12 +561,16 @@ let refreshTimer = null;
 let requestId = 1;
 let pendingRequests = new Map();
 
-let candlesM1 = [];
-let candlesM5 = [];
+let entrySeconds = 60;
+let confirmSeconds = 300;
+
+let entryCandles = [];
+let confirmCandles = [];
 
 let confirmedTrend = "WAIT";
 let currentSignal = "WAIT";
-let lastProcessedM1Time = null;
+
+let lastProcessedEntryTime = null;
 let baselineReady = false;
 let lastAlertSignal = "WAIT";
 let lastAlertCandleTime = null;
@@ -620,8 +591,16 @@ function setClass(id, className) {
     if (el) el.className = className;
 }
 
+function timeframeName(seconds) {
+    if (seconds === 60) return "M1";
+    if (seconds === 300) return "M5";
+    if (seconds === 900) return "M15";
+    return seconds + "s";
+}
+
 function formatPrice(value) {
     if (!Number.isFinite(value)) return "—";
+
     return value.toLocaleString("en-US", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 4
@@ -642,11 +621,28 @@ function setConnection(status, className = "yellow") {
     setText("topStatus", status.toUpperCase());
 }
 
+function updateTimeframeLabels() {
+    const entry = timeframeName(entrySeconds);
+    const confirm = timeframeName(confirmSeconds);
+    const combination = entry + " + " + confirm;
+
+    setText("activeTimeframes", combination);
+    setText("signalTimeframes", combination);
+
+    setText("entryCandleLabel", "Closed " + entry + " candles");
+    setText("confirmCandleLabel", "Closed " + confirm + " candles");
+
+    setText("entryTrendTitle", entry + " SuperTrend");
+    setText("confirmTrendTitle", confirm + " SuperTrend");
+    setText("rsiTitle", "RSI (" + rsiPeriod + ") • " + entry);
+}
+
 function rejectPending(reason) {
     for (const [, item] of pendingRequests) {
         clearTimeout(item.timeout);
         item.reject(new Error(reason));
     }
+
     pendingRequests.clear();
 }
 
@@ -701,6 +697,7 @@ function connectSocket() {
 
         ws.onclose = () => {
             clearTimeout(timeout);
+
             if (socket === ws) {
                 setConnection("Disconnected", "red");
             }
@@ -721,7 +718,9 @@ function connectSocket() {
                 clearTimeout(pending.timeout);
 
                 if (message.error) {
-                    pending.reject(new Error(message.error.message || "Deriv API error"));
+                    pending.reject(
+                        new Error(message.error.message || "Deriv API error")
+                    );
                 } else {
                     pending.resolve(message);
                 }
@@ -793,7 +792,7 @@ function getClosedCandles(candles, granularitySeconds) {
         .sort((a, b) => a.time - b.time);
 }
 
-/* ===================== ATR / SUPERTREND ===================== */
+/* ================= ATR AND SUPERTREND ================= */
 
 function calculateATR(candles, period) {
     if (candles.length < period + 1) return [];
@@ -807,6 +806,7 @@ function calculateATR(candles, period) {
             tr.push(c.high - c.low);
         } else {
             const previousClose = candles[i - 1].close;
+
             tr.push(Math.max(
                 c.high - c.low,
                 Math.abs(c.high - previousClose),
@@ -818,6 +818,7 @@ function calculateATR(candles, period) {
     const atr = new Array(candles.length).fill(null);
 
     let sum = 0;
+
     for (let i = 0; i < period; i++) {
         sum += tr[i];
     }
@@ -825,7 +826,9 @@ function calculateATR(candles, period) {
     atr[period - 1] = sum / period;
 
     for (let i = period; i < candles.length; i++) {
-        atr[i] = ((atr[i - 1] * (period - 1)) + tr[i]) / period;
+        atr[i] = (
+            (atr[i - 1] * (period - 1)) + tr[i]
+        ) / period;
     }
 
     return atr;
@@ -891,12 +894,16 @@ function calculateSuperTrend(candles, period, multiplier) {
     const latest = [...values].reverse().find(v => v !== null);
 
     return {
-        trend: !latest ? "WAIT" : latest.direction === 1 ? "BULLISH" : "BEARISH",
+        trend: !latest
+            ? "WAIT"
+            : latest.direction === 1
+                ? "BULLISH"
+                : "BEARISH",
         values
     };
 }
 
-/* ===================== RSI ===================== */
+/* ================= RSI ================= */
 
 function calculateRSI(candles, period) {
     if (candles.length <= period) return null;
@@ -906,6 +913,7 @@ function calculateRSI(candles, period) {
 
     for (let i = 1; i <= period; i++) {
         const change = candles[i].close - candles[i - 1].close;
+
         if (change > 0) gains += change;
         else losses += Math.abs(change);
     }
@@ -918,23 +926,33 @@ function calculateRSI(candles, period) {
         const gain = Math.max(change, 0);
         const loss = Math.max(-change, 0);
 
-        averageGain = ((averageGain * (period - 1)) + gain) / period;
-        averageLoss = ((averageLoss * (period - 1)) + loss) / period;
+        averageGain =
+            ((averageGain * (period - 1)) + gain) / period;
+
+        averageLoss =
+            ((averageLoss * (period - 1)) + loss) / period;
     }
 
-    if (averageLoss === 0) return 100;
+    if (averageLoss === 0) {
+        return averageGain === 0 ? 50 : 100;
+    }
 
     const rs = averageGain / averageLoss;
+
     return 100 - (100 / (1 + rs));
 }
 
-/* ===================== DISPLAY HELPERS ===================== */
+/* ================= DISPLAY ================= */
 
 function updateTrendBox(trend, explanation) {
     const box = $("trendBox");
+
     box.className = "signal-box " +
-        (trend === "BULLISH" ? "signal-buy" :
-         trend === "BEARISH" ? "signal-sell" : "signal-wait");
+        (trend === "BULLISH"
+            ? "signal-buy"
+            : trend === "BEARISH"
+                ? "signal-sell"
+                : "signal-wait");
 
     setText("confirmedTrend", trend);
     setText("trendExplanation", explanation);
@@ -942,9 +960,13 @@ function updateTrendBox(trend, explanation) {
 
 function updateEntryBox(signal, explanation) {
     const box = $("entryBox");
+
     box.className = "signal-box " +
-        (signal === "BUY" ? "signal-buy" :
-         signal === "SELL" ? "signal-sell" : "signal-wait");
+        (signal === "BUY"
+            ? "signal-buy"
+            : signal === "SELL"
+                ? "signal-sell"
+                : "signal-wait");
 
     setText("entrySignal", signal);
     setText("entryExplanation", explanation);
@@ -952,9 +974,16 @@ function updateEntryBox(signal, explanation) {
 
 function updateTrendLabel(id, trend) {
     setText(id, trend);
-    setClass(id, "metric-value " +
-        (trend === "BULLISH" ? "green" :
-         trend === "BEARISH" ? "red" : "yellow"));
+
+    setClass(
+        id,
+        "metric-value " +
+        (trend === "BULLISH"
+            ? "green"
+            : trend === "BEARISH"
+                ? "red"
+                : "yellow")
+    );
 }
 
 function updateRSI(rsi) {
@@ -988,11 +1017,13 @@ function updateRSI(rsi) {
     setText("rsiCondition", condition);
 }
 
-/* ===================== NOTIFICATIONS ===================== */
+/* ================= NOTIFICATIONS ================= */
 
 function playAlertSound() {
     try {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        const AudioContextClass =
+            window.AudioContext || window.webkitAudioContext;
+
         if (!AudioContextClass) return;
 
         const context = new AudioContextClass();
@@ -1020,17 +1051,10 @@ function playAlertSound() {
 }
 
 async function requestNotificationPermission() {
-    if (!("Notification" in window)) {
-        return "unsupported";
-    }
+    if (!("Notification" in window)) return "unsupported";
 
-    if (Notification.permission === "granted") {
-        return "granted";
-    }
-
-    if (Notification.permission === "denied") {
-        return "denied";
-    }
+    if (Notification.permission === "granted") return "granted";
+    if (Notification.permission === "denied") return "denied";
 
     try {
         return await Notification.requestPermission();
@@ -1042,10 +1066,13 @@ async function requestNotificationPermission() {
 function sendSignalNotification(signal) {
     playAlertSound();
 
-    if ("Notification" in window && Notification.permission === "granted") {
+    if ("Notification" in window &&
+        Notification.permission === "granted") {
         try {
             new Notification("WISETRADER V75 1S PRO", {
                 body: signal + " signal confirmed on " + SYMBOL +
+                    " using " + timeframeName(entrySeconds) + " + " +
+                    timeframeName(confirmSeconds) +
                     ". Check the app before taking action.",
                 tag: "wisetrader-v75-signal",
                 renotify: true
@@ -1060,7 +1087,7 @@ async function testAlert() {
     playAlertSound();
 
     if (!("Notification" in window)) {
-        alert("Sound test played if your browser supports audio. This browser does not support notifications.");
+        alert("This browser does not support notifications. Sound was attempted.");
         return;
     }
 
@@ -1069,12 +1096,13 @@ async function testAlert() {
             body: "Test alert successful. Notifications are enabled.",
             tag: "wisetrader-v75-test"
         });
-        alert("Test alert sent. If you did not see it, check your device notification settings.");
+
+        alert("Test alert sent. If you did not see it, check device notification settings.");
         return;
     }
 
     if (Notification.permission === "denied") {
-        alert("Notifications are blocked. Allow notifications for this app in your browser or Android app settings. The sound test was attempted.");
+        alert("Notifications are blocked. Allow notifications in your browser or Android app settings.");
         return;
     }
 
@@ -1086,72 +1114,121 @@ async function testAlert() {
             tag: "wisetrader-v75-test"
         });
     } else {
-        alert("Notification permission was not granted. You can still use the app while it is open.");
+        alert("Notification permission was not granted. The app can still be used while open.");
     }
 }
 
-/* ===================== ANALYSIS ===================== */
+/* ================= ANALYSIS ================= */
 
 function analyse({ processAlerts = true } = {}) {
-    if (candlesM1.length < Math.max(atrPeriod + 3, rsiPeriod + 2) ||
-        candlesM5.length < Math.max(atrPeriod + 3, rsiPeriod + 2)) {
+    const requiredEntry = Math.max(atrPeriod + 3, rsiPeriod + 2);
+    const requiredConfirm = atrPeriod + 3;
+
+    if (entryCandles.length < requiredEntry ||
+        confirmCandles.length < requiredConfirm) {
 
         setText("analysisStatus", "Insufficient data");
         setText("trendAgreement", "Waiting");
-        updateTrendBox("WAIT", "Waiting for enough completed candles.");
-        updateEntryBox("WAIT", "More completed candle data is needed.");
+
+        updateTrendBox(
+            "WAIT",
+            "Waiting for enough completed candles."
+        );
+
+        updateEntryBox(
+            "WAIT",
+            "More completed candle data is needed."
+        );
+
         setText("tradeDirection", "WAIT");
         setText("signalConfirmation", "Not confirmed");
+
         return;
     }
 
-    const m1Result = calculateSuperTrend(candlesM1, atrPeriod, atrMultiplier);
-    const m5Result = calculateSuperTrend(candlesM5, atrPeriod, atrMultiplier);
-    const rsi = calculateRSI(candlesM1, rsiPeriod);
+    const entryResult = calculateSuperTrend(
+        entryCandles,
+        atrPeriod,
+        atrMultiplier
+    );
 
-    const latestM1 = candlesM1[candlesM1.length - 1];
-    const m1Trend = m1Result.trend;
-    const m5Trend = m5Result.trend;
+    const confirmResult = calculateSuperTrend(
+        confirmCandles,
+        atrPeriod,
+        atrMultiplier
+    );
 
-    updateTrendLabel("m1Trend", m1Trend);
-    updateTrendLabel("m5Trend", m5Trend);
+    const rsi = calculateRSI(entryCandles, rsiPeriod);
+
+    const latestEntry = entryCandles[entryCandles.length - 1];
+
+    const entryTrend = entryResult.trend;
+    const confirmTrend = confirmResult.trend;
+
+    updateTrendLabel("entryTrend", entryTrend);
+    updateTrendLabel("confirmTrend", confirmTrend);
     updateRSI(rsi);
 
-    setText("marketPrice", formatPrice(latestM1.close));
-    setText("m1Count", candlesM1.length);
-    setText("m5Count", candlesM5.length);
+    setText("marketPrice", formatPrice(latestEntry.close));
+    setText("entryCount", entryCandles.length);
+    setText("confirmCount", confirmCandles.length);
 
     const trendsAgree =
-        m1Trend !== "WAIT" &&
-        m1Trend === m5Trend;
+        entryTrend !== "WAIT" &&
+        entryTrend === confirmTrend;
 
     let newConfirmedTrend = "WAIT";
     let newSignal = "WAIT";
-    let explanation = "M1 and M5 trends are not aligned.";
+    let explanation = "The selected timeframe trends are not aligned.";
 
     if (trendsAgree) {
-        newConfirmedTrend = m1Trend;
+        newConfirmedTrend = entryTrend;
 
-        if (m1Trend === "BULLISH" && Number.isFinite(rsi) &&
-            rsi >= 50 && rsi < 70) {
+        if (
+            entryTrend === "BULLISH" &&
+            Number.isFinite(rsi) &&
+            rsi >= 50 &&
+            rsi < 70
+        ) {
             newSignal = "BUY";
-            explanation = "M1 and M5 are bullish and RSI is within the BUY filter.";
-        } else if (m1Trend === "BEARISH" && Number.isFinite(rsi) &&
-                   rsi > 30 && rsi < 50) {
+
+            explanation =
+                timeframeName(entrySeconds) + " and " +
+                timeframeName(confirmSeconds) +
+                " are bullish, and RSI is within the BUY filter.";
+        } else if (
+            entryTrend === "BEARISH" &&
+            Number.isFinite(rsi) &&
+            rsi > 30 &&
+            rsi < 50
+        ) {
             newSignal = "SELL";
-            explanation = "M1 and M5 are bearish and RSI is within the SELL filter.";
-        } else if (m1Trend === "BULLISH") {
-            explanation = "Bullish trend confirmed, but RSI is outside the BUY filter.";
+
+            explanation =
+                timeframeName(entrySeconds) + " and " +
+                timeframeName(confirmSeconds) +
+                " are bearish, and RSI is within the SELL filter.";
+        } else if (entryTrend === "BULLISH") {
+            explanation =
+                "Bullish trend confirmed, but RSI is outside the BUY filter.";
         } else {
-            explanation = "Bearish trend confirmed, but RSI is outside the SELL filter.";
+            explanation =
+                "Bearish trend confirmed, but RSI is outside the SELL filter.";
         }
     }
 
     confirmedTrend = newConfirmedTrend;
     currentSignal = newSignal;
 
-    setText("trendAgreement", trendsAgree ? "AGREED" : "NOT ALIGNED");
-    setClass("trendAgreement", "metric-value " + (trendsAgree ? "green" : "yellow"));
+    setText(
+        "trendAgreement",
+        trendsAgree ? "AGREED" : "NOT ALIGNED"
+    );
+
+    setClass(
+        "trendAgreement",
+        "metric-value " + (trendsAgree ? "green" : "yellow")
+    );
 
     setText("analysisStatus", "Complete");
     setClass("analysisStatus", "metric-value green");
@@ -1159,43 +1236,62 @@ function analyse({ processAlerts = true } = {}) {
     updateTrendBox(
         confirmedTrend,
         trendsAgree
-            ? "M1 and M5 agree: " + confirmedTrend + "."
-            : "Waiting for M1 and M5 to confirm the same direction."
+            ? "Both selected timeframes agree: " + confirmedTrend + "."
+            : "Waiting for both selected timeframes to confirm the same direction."
     );
 
     updateEntryBox(newSignal, explanation);
 
     setText("tradeDirection", newSignal);
-    setClass("tradeDirection", "status-value " +
-        (newSignal === "BUY" ? "green" :
-         newSignal === "SELL" ? "red" : "yellow"));
 
-    setText("signalConfirmation",
-        newSignal === "WAIT" ? "Not confirmed" : "Trend + RSI confirmed");
+    setClass(
+        "tradeDirection",
+        "status-value " +
+        (newSignal === "BUY"
+            ? "green"
+            : newSignal === "SELL"
+                ? "red"
+                : "yellow")
+    );
 
-    setClass("signalConfirmation",
-        "status-value " + (newSignal === "WAIT" ? "yellow" : "green"));
+    setText(
+        "signalConfirmation",
+        newSignal === "WAIT"
+            ? "Not confirmed"
+            : "Trend + RSI confirmed"
+    );
+
+    setClass(
+        "signalConfirmation",
+        "status-value " + (newSignal === "WAIT" ? "yellow" : "green")
+    );
 
     if (!processAlerts) return;
 
-    const candleTime = latestM1.time;
+    const candleTime = latestEntry.time;
 
+    // Establish the first reading as the baseline.
+    // Do not send an immediate alert just because the app opened.
     if (!baselineReady) {
         baselineReady = true;
-        lastProcessedM1Time = candleTime;
+        lastProcessedEntryTime = candleTime;
         lastAlertSignal = newSignal;
         lastAlertCandleTime = candleTime;
         return;
     }
 
-    // Only process alerts once for each new completed M1 candle.
-    if (candleTime !== lastProcessedM1Time) {
-        lastProcessedM1Time = candleTime;
+    // Alert only when a new completed ENTRY timeframe candle appears.
+    if (candleTime !== lastProcessedEntryTime) {
+        lastProcessedEntryTime = candleTime;
 
-        if (newSignal === "BUY" || newSignal === "SELL") {
-            if (newSignal !== lastAlertSignal || candleTime !== lastAlertCandleTime) {
-                sendSignalNotification(newSignal);
-            }
+        if (
+            (newSignal === "BUY" || newSignal === "SELL") &&
+            (
+                newSignal !== lastAlertSignal ||
+                candleTime !== lastAlertCandleTime
+            )
+        ) {
+            sendSignalNotification(newSignal);
         }
 
         lastAlertSignal = newSignal;
@@ -1203,39 +1299,47 @@ function analyse({ processAlerts = true } = {}) {
     }
 }
 
-/* ===================== REFRESH ===================== */
+/* ================= REFRESH ================= */
 
 async function refreshMarket() {
     if (!running || busy) return;
 
     busy = true;
+
     setText("analysisStatus", "Updating...");
     setClass("analysisStatus", "metric-value yellow");
 
     try {
         await connectSocket();
 
-        const [rawM1, rawM5] = await Promise.all([
-            fetchCandles(60),
-            fetchCandles(300)
+        const [rawEntry, rawConfirm] = await Promise.all([
+            fetchCandles(entrySeconds),
+            fetchCandles(confirmSeconds)
         ]);
 
-        candlesM1 = getClosedCandles(rawM1, 60);
-        candlesM5 = getClosedCandles(rawM5, 300);
+        entryCandles = getClosedCandles(rawEntry, entrySeconds);
+        confirmCandles = getClosedCandles(rawConfirm, confirmSeconds);
 
-        if (!candlesM1.length || !candlesM5.length) {
-            throw new Error("No completed candles available yet");
+        if (!entryCandles.length || !confirmCandles.length) {
+            throw new Error("No completed candles available yet.");
         }
 
         setText("lastUpdate", formatTime());
+
         analyse({ processAlerts: true });
 
     } catch (error) {
         console.error("Refresh error:", error);
+
         setConnection("Data error", "red");
+
         setText("analysisStatus", "Data error");
         setClass("analysisStatus", "metric-value red");
-        setText("trendExplanation", error.message || "Could not retrieve market data.");
+
+        setText(
+            "trendExplanation",
+            error.message || "Could not retrieve market data."
+        );
     } finally {
         closeSocket();
         busy = false;
@@ -1257,10 +1361,24 @@ function startApp() {
     }, REFRESH_MS);
 }
 
+/* ================= SETTINGS ================= */
+
 function applySettings() {
+    const preset = $("timeframePreset").value.split(",");
+
+    const newEntrySeconds = Number(preset[0]);
+    const newConfirmSeconds = Number(preset[1]);
+
     const newATR = Number($("atrPeriod").value);
     const newMultiplier = Number($("atrMultiplier").value);
     const newRSI = Number($("rsiPeriod").value);
+
+    if (![60, 300, 900].includes(newEntrySeconds) ||
+        ![60, 300, 900].includes(newConfirmSeconds) ||
+        newEntrySeconds === newConfirmSeconds) {
+        alert("Please select a valid timeframe combination.");
+        return;
+    }
 
     if (!Number.isInteger(newATR) || newATR < 2 || newATR > 100) {
         alert("ATR Period must be a whole number between 2 and 100.");
@@ -1278,19 +1396,63 @@ function applySettings() {
         return;
     }
 
+    const timeframeChanged =
+        newEntrySeconds !== entrySeconds ||
+        newConfirmSeconds !== confirmSeconds;
+
+    entrySeconds = newEntrySeconds;
+    confirmSeconds = newConfirmSeconds;
+
     atrPeriod = newATR;
     atrMultiplier = newMultiplier;
     rsiPeriod = newRSI;
 
-    // Recalculate without generating a notification from settings changes.
-    if (candlesM1.length && candlesM5.length) {
+    updateTimeframeLabels();
+
+    if (timeframeChanged) {
+        // Start a new alert baseline after changing strategy.
+        baselineReady = false;
+        lastProcessedEntryTime = null;
+        lastAlertSignal = "WAIT";
+        lastAlertCandleTime = null;
+
+        entryCandles = [];
+        confirmCandles = [];
+
+        setText("entryCount", "—");
+        setText("confirmCount", "—");
+
+        updateTrendBox(
+            "WAIT",
+            "Timeframes changed. Waiting for fresh candle analysis."
+        );
+
+        updateEntryBox(
+            "WAIT",
+            "Waiting for the newly selected timeframes."
+        );
+
+        setText("tradeDirection", "WAIT");
+        setText("trendAgreement", "Waiting");
+        setText("signalConfirmation", "Not confirmed");
+    } else if (entryCandles.length && confirmCandles.length) {
         analyse({ processAlerts: false });
     }
 
-    alert("Settings applied successfully.");
+    alert(
+        "Settings applied.\nStrategy: " +
+        timeframeName(entrySeconds) + " + " +
+        timeframeName(confirmSeconds) +
+        "\nSuperTrend: " + atrPeriod + " / " + atrMultiplier +
+        "\nRSI: " + rsiPeriod
+    );
+
+    if (running) {
+        refreshMarket();
+    }
 }
 
-/* ===================== BUTTONS ===================== */
+/* ================= BUTTONS ================= */
 
 $("startBtn").addEventListener("click", async () => {
     await requestNotificationPermission();
@@ -1306,20 +1468,31 @@ $("testAlertBtn").addEventListener("click", testAlert);
 
 $("saveSettingsBtn").addEventListener("click", applySettings);
 
-/* ===================== INITIAL DISPLAY ===================== */
+/* ================= INITIAL DISPLAY ================= */
+
+updateTimeframeLabels();
 
 setConnection("Disconnected", "yellow");
+
 setText("lastUpdate", "Waiting for data");
 setText("analysisStatus", "Waiting");
 setText("trendAgreement", "Waiting");
 setText("tradeDirection", "WAIT");
 setText("signalConfirmation", "Not confirmed");
 
-updateTrendBox("WAIT", "Press START / RECONNECT to begin market analysis.");
-updateEntryBox("WAIT", "Waiting for completed M1 and M5 candles.");
+updateTrendBox(
+    "WAIT",
+    "Press START / RECONNECT to begin market analysis."
+);
 
-// Start automatically when the page opens.
+updateEntryBox(
+    "WAIT",
+    "Waiting for completed candles."
+);
+
+// Automatically start when the page opens.
 startApp();
 </script>
+
 </body>
-  </html>
+    </html>
