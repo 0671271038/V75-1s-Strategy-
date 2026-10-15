@@ -1,956 +1,1325 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#090d17">
-<title>Wisetrader V75 1S PRO</title><style>
+
+<title>Wisetrader V75 1S PRO</title>
+
+<style>
 :root {
-  --bg:#090d17;
-  --panel:#111827;
-  --panel2:#151e30;
-  --border:#2b3549;
-  --text:#edf3ff;
-  --muted:#91a0ba;
-  --green:#27df9a;
-  --red:#ff6076;
-  --yellow:#ffc857;
-  --blue:#68a7ff;
+    --bg: #090d17;
+    --panel: #111827;
+    --panel2: #151e2e;
+    --border: #263248;
+    --text: #f3f6fc;
+    --muted: #94a3b8;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #facc15;
+    --blue: #38bdf8;
 }
-* { box-sizing:border-box }
+
+* {
+    box-sizing: border-box;
+}
 
 body {
-  margin:0;
-  background:var(--bg);
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+.app {
+    max-width: 760px;
+    margin: 0 auto;
 }
 
 header {
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:16px;
-  border-bottom:1px solid var(--border);
-  background:#0c1220;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    margin-bottom: 18px;
+    padding: 8px 2px 16px;
+    border-bottom: 1px solid var(--border);
 }
 
 .logo {
-  width:52px;
-  height:52px;
-  object-fit:contain;
-  border-radius:10px;
-  background:#fff;
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    border-radius: 12px;
+    background: var(--panel);
+    border: 1px solid var(--border);
 }
 
-.brand { font-size:18px;font-weight:800 }
-.subtitle { font-size:12px;color:var(--muted);margin-top:5px }
+.brand {
+    flex: 1;
+    min-width: 0;
+}
 
-main { max-width:800px;margin:auto;padding:14px }
+.brand h1 {
+    font-size: 21px;
+    margin: 0 0 5px;
+    font-weight: 800;
+    letter-spacing: .3px;
+}
+
+.brand p {
+    color: var(--muted);
+    margin: 0;
+    font-size: 12px;
+}
+
+.badge {
+    display: inline-block;
+    margin-top: 7px;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #172b42;
+    color: var(--blue);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: .5px;
+}
+
+.live-badge {
+    padding: 7px 9px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--yellow);
+    font-size: 10px;
+    font-weight: 800;
+    white-space: nowrap;
+}
 
 .card {
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:14px;
-  padding:15px;
-  margin-bottom:13px;
+    margin-bottom: 14px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--panel);
+    box-shadow: 0 5px 18px rgba(0,0,0,.12);
 }
 
-h2 { font-size:15px;margin:0 0 13px }
-
-label {
-  display:block;
-  color:var(--muted);
-  font-size:12px;
-  margin-bottom:6px;
+.card-title {
+    margin: 0 0 13px;
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
 }
 
-input,select,button {
-  width:100%;
-  padding:12px;
-  border-radius:9px;
-  border:1px solid var(--border);
-  background:var(--panel2);
-  color:var(--text);
-  font-size:14px;
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.metric {
+    min-width: 0;
+    padding: 12px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+}
+
+.metric-label {
+    color: var(--muted);
+    font-size: 11px;
+    margin-bottom: 7px;
+}
+
+.metric-value {
+    font-size: 16px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+.small {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+.statusline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 9px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    margin-bottom: 10px;
+}
+
+.status-label {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.status-value {
+    font-size: 12px;
+    font-weight: 800;
+    text-align: right;
+}
+
+.green { color: var(--green) !important; }
+.red { color: var(--red) !important; }
+.yellow { color: var(--yellow) !important; }
+.blue { color: var(--blue) !important; }
+.muted { color: var(--muted) !important; }
+
+.signal-box {
+    padding: 19px 12px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--panel2);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.signal-label {
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+    font-weight: 800;
+}
+
+.signal-value {
+    margin: 10px 0;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.signal-detail {
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+.signal-buy {
+    color: var(--green);
+    border-color: rgba(34,197,94,.45);
+    background: rgba(34,197,94,.07);
+}
+
+.signal-sell {
+    color: var(--red);
+    border-color: rgba(239,68,68,.45);
+    background: rgba(239,68,68,.07);
+}
+
+.signal-wait {
+    color: var(--yellow);
+    border-color: rgba(250,204,21,.3);
+}
+
+.notice {
+    padding: 11px 12px;
+    border: 1px solid var(--border);
+    background: var(--panel2);
+    color: var(--muted);
+    border-radius: 9px;
+    line-height: 1.6;
+    font-size: 12px;
 }
 
 button {
-  border:0;
-  background:var(--blue);
-  color:#07101e;
-  font-weight:800;
-  cursor:pointer;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 11px 13px;
+    color: var(--text);
+    background: #1b2a40;
+    font-size: 12px;
+    font-weight: 800;
+    cursor: pointer;
 }
 
-button:disabled { opacity:.6 }
-.secondary { background:#25334b;color:var(--text) }
-
-.row,.actions {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+button:active {
+    transform: scale(.98);
 }
 
-.actions { margin-top:12px }
-
-.muted {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
+button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
 }
 
-.status {
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:12px;
-  background:#0c1423;
-  overflow-wrap:anywhere;
-  line-height:1.6;
+.btn-primary {
+    background: #123d30;
+    border-color: #24664e;
+    color: #86efac;
 }
 
-.status strong { display:block;margin-bottom:4px }
-
-.signal {
-  text-align:center;
-  padding:23px 12px;
-  background:#0c1423;
-  border:1px solid var(--border);
-  border-radius:12px;
+.btn-secondary {
+    background: #172b42;
+    border-color: #284762;
+    color: var(--blue);
 }
 
-.signal-title { font-size:30px;font-weight:900 }
-.signal-detail { font-size:12px;color:var(--muted);margin-top:8px;line-height:1.6 }
-
-.buy { color:var(--green) }
-.sell { color:var(--red) }
-.wait { color:var(--yellow) }
-
-.stat-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:9px;
-  margin-top:11px;
+.btn-danger {
+    background: #3b1c27;
+    border-color: #6b2838;
+    color: #fca5a5;
 }
 
-.stat { padding:12px;background:var(--panel2);border-radius:9px }
-.stat small { display:block;color:var(--muted);margin-bottom:6px }
-.stat strong { font-size:14px;overflow-wrap:anywhere }
-
-footer {
-  text-align:center;
-  padding:15px;
-  color:var(--muted);
-  font-size:11px;
-  line-height:1.7;
+.button-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
 }
 
-@media(max-width:480px) {
-  main { padding:10px }
-  .row,.actions { grid-template-columns:1fr }
-  header { padding:12px }
+.button-row button {
+    flex: 1;
+    min-width: 120px;
 }
-</style></head><body>
+
+input, select {
+    width: 100%;
+    padding: 11px;
+    margin-top: 7px;
+    color: var(--text);
+    background: #0b1220;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    outline: none;
+    font-size: 13px;
+}
+
+input:focus, select:focus {
+    border-color: var(--blue);
+}
+
+.field {
+    margin-bottom: 12px;
+}
+
+.field label {
+    display: block;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.footer {
+    padding: 12px 4px 20px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+hr {
+    border: 0;
+    border-top: 1px solid var(--border);
+    margin: 14px 0;
+}
+
+@media (max-width: 420px) {
+    body {
+        padding: 10px;
+    }
+
+    .card {
+        padding: 13px;
+    }
+
+    .brand h1 {
+        font-size: 17px;
+    }
+
+    .logo {
+        width: 52px;
+        height: 52px;
+    }
+
+    .live-badge {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    .metric-value {
+        font-size: 14px;
+    }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
 <header>
-  <img class="logo" src="./lgo2.png" alt="Wisetrader logo"
-       onerror="this.style.display='none'">
-  <div>
-    <div class="brand">WISETRADER V75 1S PRO</div>
-    <div class="subtitle">SuperTrend 10 / 4.0 · M1 + M5 · Closed-Candle Confirmation</div>
-  </div>
-</header><main><section class="card">
-  <h2>MARKET SETTINGS</h2><label for="symbol">Deriv market</label>
-<select id="symbol">
-<option value="1HZ75V">Volatility 75 (1s) Index</option>
-</select>
+    <img class="logo" src="./lgo2.png" alt="Wisetrader logo"
+         onerror="this.style.display='none'">
 
-  <div class="row">
-    <div>
-      <label for="stPeriod">SuperTrend ATR period</label>
-      <input id="stPeriod" type="number" value="10" min="2" max="100">
+    <div class="brand">
+        <h1>WISETRADER V75 1S PRO</h1>
+        <p>Deriv Volatility 75 (1s) • Market Signal System</p>
+        <span class="badge">SUPERTREND 10 / 4.0</span>
     </div>
-    <div>
-      <label for="stMultiplier">SuperTrend multiplier</label>
-      <input id="stMultiplier" type="number" value="4.0" min="0.5" max="10" step="0.1">
+
+    <div class="live-badge" id="topStatus">STARTING</div>
+</header>
+
+<!-- CONNECTION -->
+<section class="card">
+    <h2 class="card-title">Data Connection</h2>
+
+    <div class="statusline">
+        <span class="status-label">Deriv connection</span>
+        <span class="status-value yellow" id="connectionStatus">Disconnected</span>
     </div>
-  </div>  <div class="actions">
-    <button id="startBtn">START / ENABLE ALERTS</button>
-    <button id="refreshBtn" class="secondary">REFRESH NOW</button>
-  </div>  <p class="muted">
-    Automatic refresh every 10 seconds while running.
-    Signals use completed candles only. Keep the page open for updates.
-  </p>
-</section><section class="card">
-  <h2>CONNECTION STATUS</h2>  <div class="status">
-    <strong id="dataTitle" class="wait">NOT STARTED</strong>
-    <span id="dataMessage">Press Start / Enable Alerts.</span>
-  </div>  <div class="stat-grid">
-    <div class="stat"><small>South African time</small><strong id="clock">--:--:--</strong></div>
-    <div class="stat"><small>Last update</small><strong id="lastUpdate">—</strong></div>
-    <div class="stat"><small>M1 closed candles</small><strong id="m1Count">—</strong></div>
-    <div class="stat"><small>M5 closed candles</small><strong id="m5Count">—</strong></div>
-    <div class="stat"><small>Next refresh</small><strong id="nextRefresh">Stopped</strong></div>
-    <div class="stat"><small>Notifications</small><strong id="notificationStatus">Not enabled</strong></div>
-  </div>
-</section><section class="card">
-  <h2>MARKET ANALYSIS</h2>  <div class="signal">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:7px">CONFIRMED TREND</div>
-    <div id="trendText" class="signal-title wait">WAIT</div>
-    <div id="trendDetail" class="signal-detail">Waiting for closed-candle trend confirmation.</div>
-  </div>  <div class="signal" style="margin-top:12px">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:7px">ENTRY SIGNAL</div>
-    <div id="signalText" class="signal-title wait">WAIT</div>
-    <div id="signalDetail" class="signal-detail">
-      Waiting for market data.
+
+    <div class="statusline">
+        <span class="status-label">Market symbol</span>
+        <span class="status-value blue">1HZ75V</span>
     </div>
-  </div>  <div class="stat-grid">
-    <div class="stat"><small>M1 SuperTrend</small><strong id="m1Trend">—</strong></div>
-    <div class="stat"><small>M5 SuperTrend</small><strong id="m5Trend">—</strong></div>
-    <div class="stat"><small>M1 RSI (14)</small><strong id="rsi">—</strong></div>
-    <div class="stat"><small>Latest closed M1 price</small><strong id="price">—</strong></div>
-  </div>
-</section><section class="card">
-<footer>
-  WISETRADER V75 1S PRO<br>
-  Market analysis only · No automatic trading · Signals are not guaranteed
-</footer><script>
+
+    <div class="statusline">
+        <span class="status-label">Last update</span>
+        <span class="status-value" id="lastUpdate">Waiting for data</span>
+    </div>
+
+    <div class="statusline">
+        <span class="status-label">Closed M1 candles</span>
+        <span class="status-value" id="m1Count">—</span>
+    </div>
+
+    <div class="statusline">
+        <span class="status-label">Closed M5 candles</span>
+        <span class="status-value" id="m5Count">—</span>
+    </div>
+
+    <div class="button-row">
+        <button class="btn-primary" id="startBtn">START / RECONNECT</button>
+        <button class="btn-secondary" id="refreshBtn">REFRESH NOW</button>
+    </div>
+
+    <div class="button-row">
+        <button class="btn-secondary" id="testAlertBtn">TEST NOTIFICATION</button>
+    </div>
+</section>
+
+<!-- MARKET -->
+<section class="card">
+    <h2 class="card-title">V75 Market</h2>
+
+    <div class="grid">
+        <div class="metric">
+            <div class="metric-label">Latest closed price</div>
+            <div class="metric-value" id="marketPrice">—</div>
+            <div class="small">From Deriv market candles</div>
+        </div>
+
+        <div class="metric">
+            <div class="metric-label">RSI (14)</div>
+            <div class="metric-value" id="rsiValue">—</div>
+            <div class="small" id="rsiDescription">Waiting for analysis</div>
+        </div>
+
+        <div class="metric">
+            <div class="metric-label">M1 SuperTrend</div>
+            <div class="metric-value" id="m1Trend">—</div>
+            <div class="small">Entry timeframe</div>
+        </div>
+
+        <div class="metric">
+            <div class="metric-label">M5 SuperTrend</div>
+            <div class="metric-value" id="m5Trend">—</div>
+            <div class="small">Confirmation timeframe</div>
+        </div>
+    </div>
+</section>
+
+<!-- TREND -->
+<section class="card">
+    <h2 class="card-title">Trend Direction</h2>
+
+    <div class="signal-box signal-wait" id="trendBox">
+        <div class="signal-label">CONFIRMED MARKET TREND</div>
+        <div class="signal-value" id="confirmedTrend">WAIT</div>
+        <div class="signal-detail" id="trendExplanation">
+            Waiting for M1 and M5 trend confirmation.
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="metric">
+            <div class="metric-label">Trend agreement</div>
+            <div class="metric-value" id="trendAgreement">Waiting</div>
+        </div>
+
+        <div class="metric">
+            <div class="metric-label">Analysis status</div>
+            <div class="metric-value" id="analysisStatus">Waiting</div>
+        </div>
+    </div>
+</section>
+
+<!-- ENTRY -->
+<section class="card">
+    <h2 class="card-title">Entry Signal</h2>
+
+    <div class="signal-box signal-wait" id="entryBox">
+        <div class="signal-label">CURRENT SIGNAL</div>
+        <div class="signal-value" id="entrySignal">WAIT</div>
+        <div class="signal-detail" id="entryExplanation">
+            Waiting for a completed candle and confirmed trend.
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="metric">
+            <div class="metric-label">Signal timeframe</div>
+            <div class="metric-value">M1 + M5</div>
+        </div>
+
+        <div class="metric">
+            <div class="metric-label">Candle confirmation</div>
+            <div class="metric-value green">CLOSED CANDLES</div>
+        </div>
+    </div>
+
+    <div class="notice" style="margin-top:12px">
+        BUY and SELL signals require M1 and M5 trend agreement.
+        Signals are evaluated using completed candles, not the currently
+        forming candle. WAIT means the conditions are not fully aligned.
+    </div>
+</section>
+
+<!-- GUIDANCE -->
+<section class="card">
+    <h2 class="card-title">Trade Guidance</h2>
+
+    <div class="statusline">
+        <span class="status-label">Suggested direction</span>
+        <span class="status-value yellow" id="tradeDirection">WAIT</span>
+    </div>
+
+    <div class="statusline">
+        <span class="status-label">RSI condition</span>
+        <span class="status-value" id="rsiCondition">Waiting</span>
+    </div>
+
+    <div class="statusline">
+        <span class="status-label">Signal confirmation</span>
+        <span class="status-value" id="signalConfirmation">Not confirmed</span>
+    </div>
+
+    <div class="notice">
+        This app provides market analysis and alerts. It does not place
+        trades by itself. Confirm the market conditions and manage risk
+        before placing any trade.
+    </div>
+</section>
+
+<!-- SETTINGS -->
+<section class="card">
+    <h2 class="card-title">Bot Settings</h2>
+
+    <div class="grid">
+        <div class="field">
+            <label for="atrPeriod">SuperTrend ATR Period</label>
+            <input id="atrPeriod" type="number" min="2" max="100" value="10">
+        </div>
+
+        <div class="field">
+            <label for="atrMultiplier">SuperTrend Multiplier</label>
+            <input id="atrMultiplier" type="number" min="0.5" max="20"
+                   step="0.1" value="4.0">
+        </div>
+    </div>
+
+    <div class="field">
+        <label for="rsiPeriod">RSI Period</label>
+        <input id="rsiPeriod" type="number" min="2" max="100" value="14">
+    </div>
+
+    <div class="notice">
+        Market refresh: every 10 seconds.<br>
+        Analysis timeframes: M1 and M5.<br>
+        Signal notifications: new confirmed entry signals only.
+    </div>
+
+    <div class="button-row">
+        <button class="btn-primary" id="saveSettingsBtn">APPLY SETTINGS</button>
+    </div>
+</section>
+
+<!-- INFORMATION -->
+<section class="card">
+    <h2 class="card-title">Important Information</h2>
+
+    <div class="notice">
+        • Uses Deriv public market data for Volatility 75 (1s).<br>
+        • Requires both M1 and M5 trend confirmation.<br>
+        • Uses SuperTrend and RSI filters.<br>
+        • Notifications and sound depend on your browser and device permissions.<br>
+        • Keep this page open for continued updates.<br>
+        • Signals are not guaranteed to be profitable.
+    </div>
+</section>
+
+<div class="footer">
+    WISETRADER V75 1S PRO<br>
+    Deriv Market Data • SuperTrend + RSI • M1 / M5 Confirmation
+</div>
+
+</div>
+
+<script>
 "use strict";
 
-const $ = id => document.getElementById(id);
-const TIME_ZONE = "Africa/Johannesburg";
+/* =========================================================
+   WISETRADER V75 1S PRO
+   Deriv market data, completed-candle analysis
+   ========================================================= */
+
 const WS_URL = "wss://api.derivws.com/trading/v1/options/ws/public";
+const SYMBOL = "1HZ75V";
 const REFRESH_MS = 10000;
 
 let socket = null;
-let requestId = 0;
-let pending = new Map();
-let candles = { M1: [], M5: [] };
-
 let running = false;
 let busy = false;
-let timer = null;
-let countdownTimer = null;
-let nextRefreshAt = 0;
+let refreshTimer = null;
+let requestId = 1;
+let pendingRequests = new Map();
 
-let confirmedTrend = null;
-let lastEntrySignal = null;
-let lastProcessedM1Close = null;
-let baselineEstablished = false;
+let candlesM1 = [];
+let candlesM5 = [];
 
-let audioContext = null;
-let audioUnlocked = false;
+let confirmedTrend = "WAIT";
+let currentSignal = "WAIT";
+let lastProcessedM1Time = null;
+let baselineReady = false;
+let lastAlertSignal = "WAIT";
+let lastAlertCandleTime = null;
 
-function setStatus(title, message, state = "wait") {
-  $("dataTitle").textContent = title;
-  $("dataTitle").className =
-    state === "error" ? "sell" :
-    state === "success" ? "buy" : "wait";
+let atrPeriod = 10;
+let atrMultiplier = 4.0;
+let rsiPeriod = 14;
 
-  $("dataMessage").textContent = message;
+const $ = id => document.getElementById(id);
+
+function setText(id, value) {
+    const el = $(id);
+    if (el) el.textContent = value;
 }
 
-function formatSA(date = new Date()) {
-  return new Intl.DateTimeFormat("en-ZA", {
-    timeZone: TIME_ZONE,
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: false
-  }).format(date);
+function setClass(id, className) {
+    const el = $(id);
+    if (el) el.className = className;
 }
 
-function updateClock() {
-  $("clock").textContent = formatSA();
+function formatPrice(value) {
+    if (!Number.isFinite(value)) return "—";
+    return value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 4
+    });
 }
 
-setInterval(updateClock, 1000);
-updateClock();
-
-function setNextRefresh(seconds) {
-  $("nextRefresh").textContent =
-    seconds === null ? "Stopped" : seconds + " sec";
+function formatTime(date = new Date()) {
+    return date.toLocaleTimeString("en-ZA", {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
 }
 
-function updateNotificationStatus() {
-  if (!("Notification" in window)) {
-    $("notificationStatus").textContent = "Unsupported";
-    return;
-  }
-
-  $("notificationStatus").textContent =
-    Notification.permission === "granted" ? "Enabled" :
-    Notification.permission === "denied" ? "Blocked" :
-    "Permission needed";
+function setConnection(status, className = "yellow") {
+    setText("connectionStatus", status);
+    setClass("connectionStatus", "status-value " + className);
+    setText("topStatus", status.toUpperCase());
 }
-
-updateNotificationStatus();
 
 function rejectPending(reason) {
-  for (const item of pending.values()) {
-    clearTimeout(item.timer);
-    item.reject(new Error(reason));
-  }
-  pending.clear();
+    for (const [, item] of pendingRequests) {
+        clearTimeout(item.timeout);
+        item.reject(new Error(reason));
+    }
+    pendingRequests.clear();
 }
 
 function closeSocket() {
-  const old = socket;
-  socket = null;
-  rejectPending("Connection restarted.");
+    if (socket) {
+        rejectPending("Connection closed");
 
-  if (old) {
-    old.onopen = null;
-    old.onmessage = null;
-    old.onerror = null;
-    old.onclose = null;
+        try {
+            socket.onopen = null;
+            socket.onmessage = null;
+            socket.onerror = null;
+            socket.onclose = null;
+            socket.close();
+        } catch (_) {}
 
-    try { old.close(); } catch (_) {}
-  }
+        socket = null;
+    }
 }
 
-function sendRequest(payload, timeoutMs = 12000) {
-  return new Promise((resolve, reject) => {
-    if (!socket || socket.readyState !== WebSocket.OPEN) {
-      reject(new Error("Market-data connection is not open."));
-      return;
-    }
+function connectSocket() {
+    return new Promise((resolve, reject) => {
+        closeSocket();
 
-    const id = ++requestId;
-    payload.req_id = id;
+        let ws;
 
-    const requestTimer = setTimeout(() => {
-      pending.delete(id);
-      reject(new Error("Market-data request timed out."));
-    }, timeoutMs);
+        try {
+            ws = new WebSocket(WS_URL);
+        } catch (error) {
+            reject(error);
+            return;
+        }
 
-    pending.set(id, {
-      resolve,
-      reject,
-      timer: requestTimer
+        socket = ws;
+
+        const timeout = setTimeout(() => {
+            if (ws.readyState !== WebSocket.OPEN) {
+                try { ws.close(); } catch (_) {}
+                reject(new Error("Connection timed out"));
+            }
+        }, 15000);
+
+        ws.onopen = () => {
+            clearTimeout(timeout);
+            setConnection("Connected", "green");
+            resolve();
+        };
+
+        ws.onerror = () => {
+            clearTimeout(timeout);
+            setConnection("Connection error", "red");
+        };
+
+        ws.onclose = () => {
+            clearTimeout(timeout);
+            if (socket === ws) {
+                setConnection("Disconnected", "red");
+            }
+        };
+
+        ws.onmessage = event => {
+            let message;
+
+            try {
+                message = JSON.parse(event.data);
+            } catch (_) {
+                return;
+            }
+
+            if (message.req_id && pendingRequests.has(message.req_id)) {
+                const pending = pendingRequests.get(message.req_id);
+                pendingRequests.delete(message.req_id);
+                clearTimeout(pending.timeout);
+
+                if (message.error) {
+                    pending.reject(new Error(message.error.message || "Deriv API error"));
+                } else {
+                    pending.resolve(message);
+                }
+            }
+        };
     });
-
-    try {
-      socket.send(JSON.stringify(payload));
-    } catch (error) {
-      clearTimeout(requestTimer);
-      pending.delete(id);
-      reject(error);
-    }
-  });
 }
 
-function onMessage(event) {
-  let data;
+function sendRequest(payload) {
+    return new Promise((resolve, reject) => {
+        if (!socket || socket.readyState !== WebSocket.OPEN) {
+            reject(new Error("WebSocket is not connected"));
+            return;
+        }
 
-  try {
-    data = JSON.parse(event.data);
-  } catch (_) {
-    return;
-  }
+        const id = requestId++;
+        payload.req_id = id;
 
-  if (data.error) {
-    const message =
-      data.error.message || data.error.code || "Deriv returned an error.";
+        const timeout = setTimeout(() => {
+            pendingRequests.delete(id);
+            reject(new Error("Market data request timed out"));
+        }, 15000);
 
-    if (data.req_id && pending.has(data.req_id)) {
-      const item = pending.get(data.req_id);
-      clearTimeout(item.timer);
-      pending.delete(data.req_id);
-      item.reject(new Error(message));
-    } else {
-      setStatus("MARKET DATA ERROR", message, "error");
-    }
-    return;
-  }
+        pendingRequests.set(id, { resolve, reject, timeout });
 
-  if (data.req_id && pending.has(data.req_id)) {
-    const item = pending.get(data.req_id);
-    clearTimeout(item.timer);
-    pending.delete(data.req_id);
-    item.resolve(data);
-  }
-}
-
-async function connectSocket() {
-  closeSocket();
-  setStatus("CONNECTING", "Opening Deriv public market-data connection.");
-
-  const ws = new WebSocket(WS_URL);
-  socket = ws;
-
-  await new Promise((resolve, reject) => {
-    let settled = false;
-
-    const connectionTimer = setTimeout(() => {
-      if (settled) return;
-      settled = true;
-      try { ws.close(); } catch (_) {}
-      reject(new Error("Connection timed out. Check internet access."));
-    }, 12000);
-
-    ws.onopen = () => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(connectionTimer);
-      ws.onmessage = onMessage;
-      resolve();
-    };
-
-    ws.onerror = () => {
-      if (settled) return;
-      settled = true;
-      clearTimeout(connectionTimer);
-      reject(new Error("Deriv WebSocket connection failed."));
-    };
-
-    ws.onclose = () => {
-      if (!settled) {
-        settled = true;
-        clearTimeout(connectionTimer);
-        reject(new Error("Deriv closed the connection before it was ready."));
-      }
-    };
-  });
-
-  if (socket !== ws) {
-    throw new Error("Connection was replaced.");
-  }
-}
-
-function normaliseCandles(response) {
-  return (response.candles || [])
-    .map(c => ({
-      time: Number(c.epoch) * 1000,
-      open: Number(c.open),
-      high: Number(c.high),
-      low: Number(c.low),
-      close: Number(c.close)
-    }))
-    .filter(c =>
-      Number.isFinite(c.time) &&
-      Number.isFinite(c.open) &&
-      Number.isFinite(c.high) &&
-      Number.isFinite(c.low) &&
-      Number.isFinite(c.close) &&
-      c.high >= c.low &&
-      c.high >= Math.max(c.open, c.close) &&
-      c.low <= Math.min(c.open, c.close)
-    )
-    .sort((a, b) => a.time - b.time);
+        try {
+            socket.send(JSON.stringify(payload));
+        } catch (error) {
+            clearTimeout(timeout);
+            pendingRequests.delete(id);
+            reject(error);
+        }
+    });
 }
 
 async function fetchCandles(granularity) {
-  const response = await sendRequest({
-    ticks_history: $("symbol").value,
-    adjust_start_time: 1,
-    count: 500,
-    end: "latest",
-    style: "candles",
-    granularity
-  });
-
-  const result = normaliseCandles(response);
-
-  if (result.length < 205) {
-    throw new Error(
-      "Insufficient " + granularity / 60 +
-      "-minute candles. Received " + result.length + "."
-    );
-  }
-
-  return result;
-}
-
-function getClosedCandles(data, granularitySeconds) {
-  const now = Date.now();
-
-  return data.filter(c =>
-    c.time + granularitySeconds * 1000 <= now
-  );
-}
-
-function calculateRSI(data, period = 14) {
-  if (data.length <= period) return null;
-
-  const closes = data.map(c => c.close);
-  let gain = 0;
-  let loss = 0;
-
-  for (let i = 1; i <= period; i++) {
-    const change = closes[i] - closes[i - 1];
-    gain += Math.max(0, change);
-    loss += Math.max(0, -change);
-  }
-
-  let avgGain = gain / period;
-  let avgLoss = loss / period;
-
-  for (let i = period + 1; i < closes.length; i++) {
-    const change = closes[i] - closes[i - 1];
-
-    avgGain =
-      (avgGain * (period - 1) + Math.max(0, change)) / period;
-
-    avgLoss =
-      (avgLoss * (period - 1) + Math.max(0, -change)) / period;
-  }
-
-  if (avgLoss === 0) {
-    return avgGain === 0 ? 50 : 100;
-  }
-
-  return 100 - 100 / (1 + avgGain / avgLoss);
-}
-
-function calculateSuperTrendSeries(data, period, multiplier) {
-  const n = data.length;
-
-  const tr = new Array(n).fill(null);
-  const atr = new Array(n).fill(null);
-  const upper = new Array(n).fill(null);
-  const lower = new Array(n).fill(null);
-  const direction = new Array(n).fill(null);
-
-  if (n <= period + 2) {
-    throw new Error("Insufficient candles for SuperTrend.");
-  }
-
-  for (let i = 1; i < n; i++) {
-    tr[i] = Math.max(
-      data[i].high - data[i].low,
-      Math.abs(data[i].high - data[i - 1].close),
-      Math.abs(data[i].low - data[i - 1].close)
-    );
-  }
-
-  let total = 0;
-  for (let i = 1; i <= period; i++) total += tr[i];
-
-  atr[period] = total / period;
-
-  for (let i = period + 1; i < n; i++) {
-    atr[i] =
-      (atr[i - 1] * (period - 1) + tr[i]) / period;
-  }
-
-  for (let i = period; i < n; i++) {
-    const midpoint = (data[i].high + data[i].low) / 2;
-    const basicUpper = midpoint + multiplier * atr[i];
-    const basicLower = midpoint - multiplier * atr[i];
-
-    if (i === period) {
-      upper[i] = basicUpper;
-      lower[i] = basicLower;
-      direction[i] = data[i].close >= midpoint ? 1 : -1;
-      continue;
-    }
-
-    upper[i] =
-      basicUpper < upper[i - 1] ||
-      data[i - 1].close > upper[i - 1]
-        ? basicUpper : upper[i - 1];
-
-    lower[i] =
-      basicLower > lower[i - 1] ||
-      data[i - 1].close < lower[i - 1]
-        ? basicLower : lower[i - 1];
-
-    if (direction[i - 1] === 1) {
-      direction[i] = data[i].close < lower[i] ? -1 : 1;
-    } else {
-      direction[i] = data[i].close > upper[i] ? 1 : -1;
-    }
-  }
-
-  return direction;
-}
-
-function calculateSuperTrend(data, period, multiplier) {
-  const series = calculateSuperTrendSeries(data, period, multiplier);
-
-  for (let i = series.length - 1; i >= 0; i--) {
-    if (series[i] !== null) {
-      return series[i] === 1 ? "BULLISH" : "BEARISH";
-    }
-  }
-
-  throw new Error("SuperTrend calculation failed.");
-}
-
-function setTrendDisplay(trend, detail) {
-  const text = $("trendText");
-  text.textContent = trend;
-  text.className =
-    "signal-title " +
-    (trend === "BULLISH" ? "buy" :
-     trend === "BEARISH" ? "sell" : "wait");
-
-  $("trendDetail").textContent = detail;
-}
-
-function setEntryDisplay(signal, detail) {
-  const text = $("signalText");
-  text.textContent = signal;
-  text.className =
-    "signal-title " +
-    (signal === "BUY" ? "buy" :
-     signal === "SELL" ? "sell" : "wait");
-
-  $("signalDetail").textContent = detail;
-}
-
-function analyse() {
-  const period = Number($("stPeriod").value);
-  const multiplier = Number($("stMultiplier").value);
-
-  if (!Number.isInteger(period) || period < 2 || period > 100) {
-    throw new Error("ATR period must be a whole number from 2 to 100.");
-  }
-
-  if (!Number.isFinite(multiplier) ||
-      multiplier < 0.5 || multiplier > 10) {
-    throw new Error("Multiplier must be between 0.5 and 10.");
-  }
-
-  const m1 = getClosedCandles(candles.M1, 60);
-  const m5 = getClosedCandles(candles.M5, 300);
-
-  if (m1.length < 205 || m5.length < 205) {
-    throw new Error("Waiting for enough completed candles.");
-  }
-
-  const st1 = calculateSuperTrend(m1, period, multiplier);
-  const st5 = calculateSuperTrend(m5, period, multiplier);
-  const rsi = calculateRSI(m1, 14);
-
-  if (rsi === null || !Number.isFinite(rsi)) {
-    throw new Error("RSI calculation failed.");
-  }
-
-  const latest = m1[m1.length - 1];
-
-  $("m1Count").textContent = m1.length;
-  $("m5Count").textContent = m5.length;
-  $("price").textContent = latest.close.toFixed(2);
-  $("rsi").textContent = rsi.toFixed(2);
-  $("m1Trend").textContent = st1;
-  $("m5Trend").textContent = st5;
-
-  /*
-   * Trend is updated only when both timeframes agree.
-   * If they disagree, preserve the last confirmed trend.
-   */
-  if (st1 === st5) {
-    confirmedTrend = st1;
-  }
-
-  const trend = confirmedTrend || "WAIT";
-
-  setTrendDisplay(
-    trend,
-    trend === "BULLISH"
-      ? "Confirmed bullish trend. Waiting for valid BUY entry conditions."
-      : trend === "BEARISH"
-        ? "Confirmed bearish trend. Waiting for valid SELL entry conditions."
-        : "Waiting for M1 and M5 SuperTrend to agree."
-  );
-
-  let entry = "WAIT";
-  let detail = "Waiting for trend and RSI confirmation.";
-
-  if (trend === "BULLISH" &&
-      st1 === "BULLISH" &&
-      st5 === "BULLISH" &&
-      rsi >= 50 && rsi < 70) {
-    entry = "BUY";
-    detail = "M1 and M5 are bullish; closed-candle RSI confirms entry.";
-  } else if (trend === "BEARISH" &&
-             st1 === "BEARISH" &&
-             st5 === "BEARISH" &&
-             rsi > 30 && rsi < 50) {
-    entry = "SELL";
-    detail = "M1 and M5 are bearish; closed-candle RSI confirms entry.";
-  } else {
-    detail =
-      "Trend: " + trend +
-      ". Entry is WAIT until all entry conditions align.";
-  }
-
-  /*
-   * Only process a new signal when a new completed M1 candle appears.
-   */
-  if (!baselineEstablished) {
-    baselineEstablished = true;
-    lastProcessedM1Close = latest.time;
-    lastEntrySignal = entry;
-  } else if (latest.time > lastProcessedM1Close) {
-    lastProcessedM1Close = latest.time;
-
-    if (entry !== lastEntrySignal &&
-        (entry === "BUY" || entry === "SELL")) {
-      handleSignalChange(entry, latest.close, rsi);
-    }
-
-    lastEntrySignal = entry;
-  }
-
-  setEntryDisplay(entry, detail);
-
-  return entry;
-}
-
-function unlockAudio() {
-  try {
-    const AudioContextClass =
-      window.AudioContext || window.webkitAudioContext;
-
-    if (!AudioContextClass) return;
-
-    if (!audioContext) audioContext = new AudioContextClass();
-
-    if (audioContext.state === "suspended") audioContext.resume();
-
-    audioUnlocked = true;
-  } catch (error) {
-    console.warn("Audio unavailable:", error);
-  }
-}
-
-function playAlertSound(type = "BUY") {
-  if (!audioUnlocked || !audioContext) return;
-
-  try {
-    if (audioContext.state === "suspended") audioContext.resume();
-
-    const frequencies = type === "SELL" ? [660, 440] : [660, 880];
-
-    frequencies.forEach((frequency, index) => {
-      const oscillator = audioContext.createOscillator();
-      const gain = audioContext.createGain();
-      const start = audioContext.currentTime + index * 0.18;
-
-      oscillator.type = "sine";
-      oscillator.frequency.value = frequency;
-
-      gain.gain.setValueAtTime(0.0001, start);
-      gain.gain.exponentialRampToValueAtTime(0.18, start + 0.025);
-      gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
-
-      oscillator.connect(gain);
-      gain.connect(audioContext.destination);
-
-      oscillator.start(start);
-      oscillator.stop(start + 0.18);
-    });
-  } catch (error) {
-    console.warn("Alert sound failed:", error);
-  }
-}
-
-function showNotification(title, body) {
-  if (!("Notification" in window)) return;
-  if (Notification.permission !== "granted") return;
-
-  try {
-    const notification = new Notification(title, {
-      body,
-      tag: "wisetrader-v75-entry",
-      renotify: false
+    const response = await sendRequest({
+        ticks_history: SYMBOL,
+        style: "candles",
+        granularity: granularity,
+        count: 500,
+        end: "latest"
     });
 
-    notification.onclick = () => {
-      window.focus();
-      notification.close();
+    if (!response.candles || !Array.isArray(response.candles)) {
+        throw new Error("No candle data returned");
+    }
+
+    return response.candles.map(c => ({
+        time: Number(c.epoch),
+        open: Number(c.open),
+        high: Number(c.high),
+        low: Number(c.low),
+        close: Number(c.close)
+    })).filter(c =>
+        Number.isFinite(c.time) &&
+        Number.isFinite(c.open) &&
+        Number.isFinite(c.high) &&
+        Number.isFinite(c.low) &&
+        Number.isFinite(c.close)
+    );
+}
+
+function getClosedCandles(candles, granularitySeconds) {
+    const nowSeconds = Math.floor(Date.now() / 1000);
+
+    return candles
+        .filter(c => c.time + granularitySeconds <= nowSeconds)
+        .sort((a, b) => a.time - b.time);
+}
+
+/* ===================== ATR / SUPERTREND ===================== */
+
+function calculateATR(candles, period) {
+    if (candles.length < period + 1) return [];
+
+    const tr = [];
+
+    for (let i = 0; i < candles.length; i++) {
+        const c = candles[i];
+
+        if (i === 0) {
+            tr.push(c.high - c.low);
+        } else {
+            const previousClose = candles[i - 1].close;
+            tr.push(Math.max(
+                c.high - c.low,
+                Math.abs(c.high - previousClose),
+                Math.abs(c.low - previousClose)
+            ));
+        }
+    }
+
+    const atr = new Array(candles.length).fill(null);
+
+    let sum = 0;
+    for (let i = 0; i < period; i++) {
+        sum += tr[i];
+    }
+
+    atr[period - 1] = sum / period;
+
+    for (let i = period; i < candles.length; i++) {
+        atr[i] = ((atr[i - 1] * (period - 1)) + tr[i]) / period;
+    }
+
+    return atr;
+}
+
+function calculateSuperTrend(candles, period, multiplier) {
+    if (candles.length < period + 2) {
+        return { trend: "WAIT", values: [] };
+    }
+
+    const atr = calculateATR(candles, period);
+    const values = [];
+
+    let finalUpper = null;
+    let finalLower = null;
+    let direction = 1;
+
+    for (let i = 0; i < candles.length; i++) {
+        const c = candles[i];
+
+        if (atr[i] == null) {
+            values.push(null);
+            continue;
+        }
+
+        const midpoint = (c.high + c.low) / 2;
+        const basicUpper = midpoint + multiplier * atr[i];
+        const basicLower = midpoint - multiplier * atr[i];
+
+        if (finalUpper === null || finalLower === null) {
+            finalUpper = basicUpper;
+            finalLower = basicLower;
+            direction = c.close >= midpoint ? 1 : -1;
+        } else {
+            const previousUpper = finalUpper;
+            const previousLower = finalLower;
+            const previousClose = candles[i - 1].close;
+
+            finalUpper =
+                basicUpper < previousUpper || previousClose > previousUpper
+                    ? basicUpper
+                    : previousUpper;
+
+            finalLower =
+                basicLower > previousLower || previousClose < previousLower
+                    ? basicLower
+                    : previousLower;
+
+            if (direction === -1 && c.close > finalUpper) {
+                direction = 1;
+            } else if (direction === 1 && c.close < finalLower) {
+                direction = -1;
+            }
+        }
+
+        values.push({
+            direction,
+            value: direction === 1 ? finalLower : finalUpper,
+            atr: atr[i]
+        });
+    }
+
+    const latest = [...values].reverse().find(v => v !== null);
+
+    return {
+        trend: !latest ? "WAIT" : latest.direction === 1 ? "BULLISH" : "BEARISH",
+        values
     };
-  } catch (error) {
-    console.warn("Notification failed:", error);
-  }
 }
 
-function handleSignalChange(signal, price, rsi) {
-  showNotification(
-    "WISETRADER V75 1S — " + signal,
-    "Confirmed " + signal +
-    " entry\nMarket: Volatility 75 (1s) Index" +
-    "\nClosed M1 price: " + price.toFixed(2) +
-    "\nRSI: " + rsi.toFixed(2)
-  );
+/* ===================== RSI ===================== */
 
-  playAlertSound(signal);
+function calculateRSI(candles, period) {
+    if (candles.length <= period) return null;
 
-  setStatus(
-    signal + " ENTRY CONFIRMED",
-    "New " + signal + " entry confirmed at " + formatSA() + ".",
-    "success"
-  );
+    let gains = 0;
+    let losses = 0;
+
+    for (let i = 1; i <= period; i++) {
+        const change = candles[i].close - candles[i - 1].close;
+        if (change > 0) gains += change;
+        else losses += Math.abs(change);
+    }
+
+    let averageGain = gains / period;
+    let averageLoss = losses / period;
+
+    for (let i = period + 1; i < candles.length; i++) {
+        const change = candles[i].close - candles[i - 1].close;
+        const gain = Math.max(change, 0);
+        const loss = Math.max(-change, 0);
+
+        averageGain = ((averageGain * (period - 1)) + gain) / period;
+        averageLoss = ((averageLoss * (period - 1)) + loss) / period;
+    }
+
+    if (averageLoss === 0) return 100;
+
+    const rs = averageGain / averageLoss;
+    return 100 - (100 / (1 + rs));
 }
 
-async function refreshMarket() {
-  if (!running || busy) return;
+/* ===================== DISPLAY HELPERS ===================== */
 
-  busy = true;
+function updateTrendBox(trend, explanation) {
+    const box = $("trendBox");
+    box.className = "signal-box " +
+        (trend === "BULLISH" ? "signal-buy" :
+         trend === "BEARISH" ? "signal-sell" : "signal-wait");
 
-  try {
-    setStatus("UPDATING", "Requesting the latest M1 and M5 candles.");
-
-    await connectSocket();
-
-    const results = await Promise.all([
-      fetchCandles(60),
-      fetchCandles(300)
-    ]);
-
-    if (!running) return;
-
-    candles.M1 = results[0];
-    candles.M5 = results[1];
-
-    analyse();
-
-    $("lastUpdate").textContent = formatSA();
-
-    setStatus(
-      "CONNECTED · DATA RECEIVED",
-      "Closed candles analysed. Refreshing every 10 seconds.",
-      "success"
-    );
-  } catch (error) {
-    console.error("Refresh error:", error);
-
-    setStatus(
-      "DATA ERROR",
-      (error.message || "Unknown error") + " Automatic retry will follow.",
-      "error"
-    );
-  } finally {
-    closeSocket();
-    busy = false;
-
-    if (running) scheduleNextRefresh();
-  }
+    setText("confirmedTrend", trend);
+    setText("trendExplanation", explanation);
 }
 
-function scheduleNextRefresh() {
-  clearTimeout(timer);
-  nextRefreshAt = Date.now() + REFRESH_MS;
-  timer = setTimeout(refreshMarket, REFRESH_MS);
+function updateEntryBox(signal, explanation) {
+    const box = $("entryBox");
+    box.className = "signal-box " +
+        (signal === "BUY" ? "signal-buy" :
+         signal === "SELL" ? "signal-sell" : "signal-wait");
+
+    setText("entrySignal", signal);
+    setText("entryExplanation", explanation);
 }
 
-function updateCountdown() {
-  if (!running) {
-    setNextRefresh(null);
-    return;
-  }
-
-  setNextRefresh(
-    Math.max(0, Math.ceil((nextRefreshAt - Date.now()) / 1000))
-  );
+function updateTrendLabel(id, trend) {
+    setText(id, trend);
+    setClass(id, "metric-value " +
+        (trend === "BULLISH" ? "green" :
+         trend === "BEARISH" ? "red" : "yellow"));
 }
 
-countdownTimer = setInterval(updateCountdown, 1000);
+function updateRSI(rsi) {
+    if (!Number.isFinite(rsi)) {
+        setText("rsiValue", "—");
+        setText("rsiDescription", "Not enough candle data");
+        setText("rsiCondition", "Waiting");
+        return;
+    }
+
+    setText("rsiValue", rsi.toFixed(2));
+
+    let description = "Neutral";
+    let condition = "Neutral";
+
+    if (rsi >= 70) {
+        description = "High RSI";
+        condition = "Too high for BUY filter";
+    } else if (rsi <= 30) {
+        description = "Low RSI";
+        condition = "Too low for SELL filter";
+    } else if (rsi >= 50) {
+        description = "Bullish RSI zone";
+        condition = "BUY filter zone";
+    } else {
+        description = "Bearish RSI zone";
+        condition = "SELL filter zone";
+    }
+
+    setText("rsiDescription", description);
+    setText("rsiCondition", condition);
+}
+
+/* ===================== NOTIFICATIONS ===================== */
+
+function playAlertSound() {
+    try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        const context = new AudioContextClass();
+        const oscillator = context.createOscillator();
+        const gain = context.createGain();
+
+        oscillator.type = "sine";
+        oscillator.frequency.value = 880;
+        gain.gain.value = 0.12;
+
+        oscillator.connect(gain);
+        gain.connect(context.destination);
+
+        oscillator.start();
+
+        setTimeout(() => {
+            try {
+                oscillator.stop();
+                context.close();
+            } catch (_) {}
+        }, 350);
+    } catch (error) {
+        console.warn("Sound unavailable:", error);
+    }
+}
 
 async function requestNotificationPermission() {
-  if (!("Notification" in window)) {
-    updateNotificationStatus();
-    return;
-  }
-
-  if (Notification.permission === "default") {
-    try {
-      await Notification.requestPermission();
-    } catch (error) {
-      console.warn("Notification permission request failed.", error);
+    if (!("Notification" in window)) {
+        return "unsupported";
     }
-  }
 
-  updateNotificationStatus();
+    if (Notification.permission === "granted") {
+        return "granted";
+    }
+
+    if (Notification.permission === "denied") {
+        return "denied";
+    }
+
+    try {
+        return await Notification.requestPermission();
+    } catch (_) {
+        return "denied";
+    }
 }
 
-async function startApp() {
-  unlockAudio();
-  await requestNotificationPermission();
+function sendSignalNotification(signal) {
+    playAlertSound();
 
-  if (running) {
-    await refreshMarket();
-    return;
-  }
-
-  running = true;
-  $("startBtn").textContent = "ALERTS ENABLED · RUNNING";
-
-  setStatus("STARTING", "Automatic market refresh is starting.");
-
-  await refreshMarket();
+    if ("Notification" in window && Notification.permission === "granted") {
+        try {
+            new Notification("WISETRADER V75 1S PRO", {
+                body: signal + " signal confirmed on " + SYMBOL +
+                    ". Check the app before taking action.",
+                tag: "wisetrader-v75-signal",
+                renotify: true
+            });
+        } catch (error) {
+            console.warn("Notification unavailable:", error);
+        }
+    }
 }
 
-$("startBtn").addEventListener("click", startApp);
+async function testAlert() {
+    playAlertSound();
 
-$("refreshBtn").addEventListener("click", async () => {
-  unlockAudio();
+    if (!("Notification" in window)) {
+        alert("Sound test played if your browser supports audio. This browser does not support notifications.");
+        return;
+    }
 
-  if (!running) {
+    if (Notification.permission === "granted") {
+        new Notification("WISETRADER V75 1S PRO", {
+            body: "Test alert successful. Notifications are enabled.",
+            tag: "wisetrader-v75-test"
+        });
+        alert("Test alert sent. If you did not see it, check your device notification settings.");
+        return;
+    }
+
+    if (Notification.permission === "denied") {
+        alert("Notifications are blocked. Allow notifications for this app in your browser or Android app settings. The sound test was attempted.");
+        return;
+    }
+
+    const permission = await requestNotificationPermission();
+
+    if (permission === "granted") {
+        new Notification("WISETRADER V75 1S PRO", {
+            body: "Test alert successful. Notifications are enabled.",
+            tag: "wisetrader-v75-test"
+        });
+    } else {
+        alert("Notification permission was not granted. You can still use the app while it is open.");
+    }
+}
+
+/* ===================== ANALYSIS ===================== */
+
+function analyse({ processAlerts = true } = {}) {
+    if (candlesM1.length < Math.max(atrPeriod + 3, rsiPeriod + 2) ||
+        candlesM5.length < Math.max(atrPeriod + 3, rsiPeriod + 2)) {
+
+        setText("analysisStatus", "Insufficient data");
+        setText("trendAgreement", "Waiting");
+        updateTrendBox("WAIT", "Waiting for enough completed candles.");
+        updateEntryBox("WAIT", "More completed candle data is needed.");
+        setText("tradeDirection", "WAIT");
+        setText("signalConfirmation", "Not confirmed");
+        return;
+    }
+
+    const m1Result = calculateSuperTrend(candlesM1, atrPeriod, atrMultiplier);
+    const m5Result = calculateSuperTrend(candlesM5, atrPeriod, atrMultiplier);
+    const rsi = calculateRSI(candlesM1, rsiPeriod);
+
+    const latestM1 = candlesM1[candlesM1.length - 1];
+    const m1Trend = m1Result.trend;
+    const m5Trend = m5Result.trend;
+
+    updateTrendLabel("m1Trend", m1Trend);
+    updateTrendLabel("m5Trend", m5Trend);
+    updateRSI(rsi);
+
+    setText("marketPrice", formatPrice(latestM1.close));
+    setText("m1Count", candlesM1.length);
+    setText("m5Count", candlesM5.length);
+
+    const trendsAgree =
+        m1Trend !== "WAIT" &&
+        m1Trend === m5Trend;
+
+    let newConfirmedTrend = "WAIT";
+    let newSignal = "WAIT";
+    let explanation = "M1 and M5 trends are not aligned.";
+
+    if (trendsAgree) {
+        newConfirmedTrend = m1Trend;
+
+        if (m1Trend === "BULLISH" && Number.isFinite(rsi) &&
+            rsi >= 50 && rsi < 70) {
+            newSignal = "BUY";
+            explanation = "M1 and M5 are bullish and RSI is within the BUY filter.";
+        } else if (m1Trend === "BEARISH" && Number.isFinite(rsi) &&
+                   rsi > 30 && rsi < 50) {
+            newSignal = "SELL";
+            explanation = "M1 and M5 are bearish and RSI is within the SELL filter.";
+        } else if (m1Trend === "BULLISH") {
+            explanation = "Bullish trend confirmed, but RSI is outside the BUY filter.";
+        } else {
+            explanation = "Bearish trend confirmed, but RSI is outside the SELL filter.";
+        }
+    }
+
+    confirmedTrend = newConfirmedTrend;
+    currentSignal = newSignal;
+
+    setText("trendAgreement", trendsAgree ? "AGREED" : "NOT ALIGNED");
+    setClass("trendAgreement", "metric-value " + (trendsAgree ? "green" : "yellow"));
+
+    setText("analysisStatus", "Complete");
+    setClass("analysisStatus", "metric-value green");
+
+    updateTrendBox(
+        confirmedTrend,
+        trendsAgree
+            ? "M1 and M5 agree: " + confirmedTrend + "."
+            : "Waiting for M1 and M5 to confirm the same direction."
+    );
+
+    updateEntryBox(newSignal, explanation);
+
+    setText("tradeDirection", newSignal);
+    setClass("tradeDirection", "status-value " +
+        (newSignal === "BUY" ? "green" :
+         newSignal === "SELL" ? "red" : "yellow"));
+
+    setText("signalConfirmation",
+        newSignal === "WAIT" ? "Not confirmed" : "Trend + RSI confirmed");
+
+    setClass("signalConfirmation",
+        "status-value " + (newSignal === "WAIT" ? "yellow" : "green"));
+
+    if (!processAlerts) return;
+
+    const candleTime = latestM1.time;
+
+    if (!baselineReady) {
+        baselineReady = true;
+        lastProcessedM1Time = candleTime;
+        lastAlertSignal = newSignal;
+        lastAlertCandleTime = candleTime;
+        return;
+    }
+
+    // Only process alerts once for each new completed M1 candle.
+    if (candleTime !== lastProcessedM1Time) {
+        lastProcessedM1Time = candleTime;
+
+        if (newSignal === "BUY" || newSignal === "SELL") {
+            if (newSignal !== lastAlertSignal || candleTime !== lastAlertCandleTime) {
+                sendSignalNotification(newSignal);
+            }
+        }
+
+        lastAlertSignal = newSignal;
+        lastAlertCandleTime = candleTime;
+    }
+}
+
+/* ===================== REFRESH ===================== */
+
+async function refreshMarket() {
+    if (!running || busy) return;
+
+    busy = true;
+    setText("analysisStatus", "Updating...");
+    setClass("analysisStatus", "metric-value yellow");
+
+    try {
+        await connectSocket();
+
+        const [rawM1, rawM5] = await Promise.all([
+            fetchCandles(60),
+            fetchCandles(300)
+        ]);
+
+        candlesM1 = getClosedCandles(rawM1, 60);
+        candlesM5 = getClosedCandles(rawM5, 300);
+
+        if (!candlesM1.length || !candlesM5.length) {
+            throw new Error("No completed candles available yet");
+        }
+
+        setText("lastUpdate", formatTime());
+        analyse({ processAlerts: true });
+
+    } catch (error) {
+        console.error("Refresh error:", error);
+        setConnection("Data error", "red");
+        setText("analysisStatus", "Data error");
+        setClass("analysisStatus", "metric-value red");
+        setText("trendExplanation", error.message || "Could not retrieve market data.");
+    } finally {
+        closeSocket();
+        busy = false;
+    }
+}
+
+function startApp() {
     running = true;
-    $("startBtn").textContent = "ALERTS ENABLED · RUNNING";
-  }
 
-  clearTimeout(timer);
-  await refreshMarket();
-});
+    if (refreshTimer) {
+        clearInterval(refreshTimer);
+        refreshTimer = null;
+    }
 
-$("testAlertBtn").addEventListener("click", async () => {
-  unlockAudio();
-  await requestNotificationPermission();
+    refreshMarket();
 
-  playAlertSound("BUY");
-
-  showNotification(
-    "WISETRADER TEST ALERT",
-    "This is a test notification, not a trading signal."
-  );
-
-  if (!("Notification" in window) ||
-      Notification.permission !== "granted") {
-    setStatus(
-      "NOTIFICATION PERMISSION NEEDED",
-      "Allow notifications in your browser or Android app settings.",
-      "error"
-    );
-  }
-});
-
-function recalculateSettings() {
-  if (!candles.M1.length || !candles.M5.length) return;
-
-  try {
-    analyse();
-
-    setStatus(
-      "SETTINGS UPDATED",
-      "Indicators recalculated using completed candles.",
-      "success"
-    );
-  } catch (error) {
-    setStatus("ANALYSIS ERROR", error.message, "error");
-  }
+    refreshTimer = setInterval(() => {
+        refreshMarket();
+    }, REFRESH_MS);
 }
 
-$("stPeriod").addEventListener("change", recalculateSettings);
-$("stMultiplier").addEventListener("change", recalculateSettings);
+function applySettings() {
+    const newATR = Number($("atrPeriod").value);
+    const newMultiplier = Number($("atrMultiplier").value);
+    const newRSI = Number($("rsiPeriod").value);
 
-window.addEventListener("offline", () => {
-  setStatus("NETWORK OFFLINE", "Check your internet connection.", "error");
+    if (!Number.isInteger(newATR) || newATR < 2 || newATR > 100) {
+        alert("ATR Period must be a whole number between 2 and 100.");
+        return;
+    }
+
+    if (!Number.isFinite(newMultiplier) ||
+        newMultiplier < 0.5 || newMultiplier > 20) {
+        alert("SuperTrend Multiplier must be between 0.5 and 20.");
+        return;
+    }
+
+    if (!Number.isInteger(newRSI) || newRSI < 2 || newRSI > 100) {
+        alert("RSI Period must be a whole number between 2 and 100.");
+        return;
+    }
+
+    atrPeriod = newATR;
+    atrMultiplier = newMultiplier;
+    rsiPeriod = newRSI;
+
+    // Recalculate without generating a notification from settings changes.
+    if (candlesM1.length && candlesM5.length) {
+        analyse({ processAlerts: false });
+    }
+
+    alert("Settings applied successfully.");
+}
+
+/* ===================== BUTTONS ===================== */
+
+$("startBtn").addEventListener("click", async () => {
+    await requestNotificationPermission();
+    startApp();
 });
 
-window.addEventListener("online", () => {
-  if (running) {
-    clearTimeout(timer);
+$("refreshBtn").addEventListener("click", () => {
+    if (!running) running = true;
     refreshMarket();
-  }
 });
 
-window.addEventListener("beforeunload", () => {
-  running = false;
-  clearTimeout(timer);
-  closeSocket();
-});
-</script></body>
-                                                         </html>
+$("testAlertBtn").addEventListener("click", testAlert);
+
+$("saveSettingsBtn").addEventListener("click", applySettings);
+
+/* ===================== INITIAL DISPLAY ===================== */
+
+setConnection("Disconnected", "yellow");
+setText("lastUpdate", "Waiting for data");
+setText("analysisStatus", "Waiting");
+setText("trendAgreement", "Waiting");
+setText("tradeDirection", "WAIT");
+setText("signalConfirmation", "Not confirmed");
+
+updateTrendBox("WAIT", "Press START / RECONNECT to begin market analysis.");
+updateEntryBox("WAIT", "Waiting for completed M1 and M5 candles.");
+
+// Start automatically when the page opens.
+startApp();
+</script>
+</body>
+  </html>
